@@ -32,7 +32,7 @@ public class Invoker : MonoBehaviour
         if(summonsActive == maxSummons)
         {
             StartCoroutine(StopAnimation());
-            animator.Play("InvokerIdle");
+            animator.SetBool("isSummoning", false);
         }
     }
 
@@ -59,7 +59,7 @@ public class Invoker : MonoBehaviour
 
             if (!summons[i].activeSelf)
             {
-                animator.Play("InvokerAttack");
+                animator.SetBool("isSummoning", true);
                 summons[i].transform.position = transform.position;
                 summons[i].SetActive(true);
                 summons[i].GetComponent<Stalker>().speed = 7;
