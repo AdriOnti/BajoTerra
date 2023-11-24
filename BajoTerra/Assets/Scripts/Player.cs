@@ -1,16 +1,12 @@
+using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Net.NetworkInformation;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
-public class PlayerMovement : MonoBehaviour
+public class Player : Character
 {
-    public float speed;
-    public int hp;
-
     private Rigidbody2D rb;
-    private Animator animator;
 
     // Input Variable
     private Vector2 movement;
@@ -19,7 +15,8 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
+        base.animator = GetComponent<Animator>();
+        GameObject.Find("hpText").GetComponent<Text>().text = Convert.ToString(hp);
     }
 
     private void OnMovement(InputValue value)
@@ -57,6 +54,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (attack.x != 0 || attack.y != 0)
         {
+            animator.SetBool("isWalking", false);
             animator.SetFloat("posX", attack.x);
             animator.SetFloat("posY", attack.y);
 
@@ -78,6 +76,7 @@ public class PlayerMovement : MonoBehaviour
         if (hp != 0)
         {
             hp--;
+            GameObject.Find("hpText").GetComponent<Text>().text = Convert.ToString(hp);
             animator.SetBool("isHurt", true);
             yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
             animator.SetBool("isHurt", false);
@@ -88,9 +87,6 @@ public class PlayerMovement : MonoBehaviour
     {
         animator.SetBool("isDead", true);
         yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
-        animator.enabled = false;
-        yield return new WaitForSeconds(0.01f);
-        animator.enabled = true;
 
         this.gameObject.SetActive(false);
     }

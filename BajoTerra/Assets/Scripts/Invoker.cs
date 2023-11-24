@@ -64,6 +64,7 @@ public class Invoker : MonoBehaviour
                 summons[i].SetActive(true);
                 summons[i].GetComponent<Stalker>().speed = 7;
                 summons[i].GetComponent<Stalker>().hp = 2;
+                summons[i].GetComponent<Stalker>().iAmSummon = true;
                 summonsActive++;
             }
         }
