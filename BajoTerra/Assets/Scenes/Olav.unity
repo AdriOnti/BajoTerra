@@ -419,7 +419,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!95 &357492436
 Animator:
   serializedVersion: 5
@@ -926,7 +926,7 @@ GameObject:
   m_Component:
   - component: {fileID: 708234676}
   m_Layer: 0
-  m_Name: TmpTarget
+  m_Name: ShotPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -941,7 +941,7 @@ Transform:
   m_GameObject: {fileID: 708234675}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 17.44, y: 5.01, z: -0.32259434}
+  m_LocalPosition: {x: 10.91, y: 5.561473, z: -0.32259434}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1671,7 +1671,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!95 &2038587862
 Animator:
   serializedVersion: 5
@@ -1772,10 +1772,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 882a39e724bdbb9499934cf9424aeb8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hp: 0
+  speed: 0
+  dropItem: {fileID: 0}
   shotPrefab: {fileID: 2133061011}
-  target: {fileID: 708234676}
-  timeBetweenShots: 0.25
+  timeBetweenShots: 0.3
   numberOfShots: 5
+  visionRange: 10
 --- !u!61 &2038587866
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1832,8 +1835,8 @@ GameObject:
   - component: {fileID: 2133061014}
   - component: {fileID: 2133061013}
   - component: {fileID: 2133061012}
-  - component: {fileID: 2133061015}
   - component: {fileID: 2133061016}
+  - component: {fileID: 2133061017}
   m_Layer: 0
   m_Name: TurretBullet
   m_TagString: Enemy
@@ -1929,21 +1932,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2133061015
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2133061011}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 784fc0848c15d3c449b9b3ba46bb78ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 708234676}
-  speed: 15
-  minDistance2Target: 0.1
 --- !u!58 &2133061016
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1979,6 +1967,22 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.069900036
+--- !u!114 &2133061017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2133061011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 784fc0848c15d3c449b9b3ba46bb78ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 1469970474}
+  speed: 15
+  moving: 0
+  minDistance2Target: 0.1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

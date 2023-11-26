@@ -6,7 +6,7 @@ public class TurretBullet : MonoBehaviour
 {
     public Transform target;
     public float speed = 15f;
-    private bool moving = false;
+    public bool moving = false;
     public float minDistance2Target = 0.1f;
 
     private void Update()
@@ -37,11 +37,7 @@ public class TurretBullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Ground")
-        {
-            moving = false;
-            BackToPool();
-        }
+        moving = false;
+        BackToPool();
     }
-
 }
