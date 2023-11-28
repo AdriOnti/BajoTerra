@@ -2,60 +2,91 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Turret : Enemy
+public class Turret : MonoBehaviour
 {
-    public GameObject shotPrefab;
-    public float timeBetweenShots = 2.0f;
-    public int numberOfShots;
-    private Transform[] shots;
-    public float visionRange = 10f;
+    public float visionRange = 5f;
+    public float rotateSpeed = 3f;
+    public float shotSpeed = 50f;
+    public Transform player;
+    public GameObject projectile;
+    public int projectileQuantity;
 
-    private GameObject player;
+    private List<Transform> pool;
 
-
-    // Start is called before the first frame update
     void Start()
     {
-        animator = GetComponent<Animator>();
-        player = GameObject.FindGameObjectWithTag("Player");
+        // Inicializar el pool de balas
+        InstantiatePoolItem();
+    }
 
-        // Aadimos el numero de disparos que puede hacer y que se vayan desactivando
-        shots = new Transform[numberOfShots];
-        for (int i = 0; i < numberOfShots; i++)
+    void Update()
+    {
+        // Verificar si el jugador está dentro del rango de visión
+        if (Vector2.Distance(transform.position, player.position) <= visionRange)
         {
-            shots[i] = Instantiate(shotPrefab).transform;
-            shots[i].gameObject.SetActive(false);
-            shots[i].transform.SetParent(transform);
-        }
+            // Girar hacia el jugador
+            RotatePlayer();
 
-        StartCoroutine(ActiveLauncher());
+            // Disparar al jugador
+            StartCoroutine(Shot());
+        }
+    }
+
+    void InstantiatePoolItem()
+    {
+        pool = new List<Transform>();
+
+        for (int i = 0; i < projectileQuantity; i++)
+        {
+            GameObject shot = Instantiate(projectile, transform.position, Quaternion.identity, transform);
+            shot.SetActive(false);
+            pool.Add(shot.transform);
+        }
+    }
+
+    void RotatePlayer()
+    {
+        Vector2 direction = player.position - transform.position;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        Quaternion rotate2Player = Quaternion.AngleAxis(angle, Vector3.forward);
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotate2Player, Time.deltaTime * rotateSpeed);
+    }
+
+    IEnumerator Shot()
+    {
+        // Buscar una bala inactiva en el pool
+        Transform shotTransform = pool.Find(b => !b.gameObject.activeSelf);
+
+        // Si encontramos una bala inactiva, la activamos y la disparamos
+        if (shotTransform != null)
+        {
+            shotTransform.position = transform.position;
+            shotTransform.rotation = transform.rotation;
+            shotTransform.gameObject.SetActive(true);
+
+            // Obtener la dirección hacia el jugador
+            Vector2 direction = player.position - transform.position;
+
+            yield return new WaitForSeconds(direction.magnitude);
+
+            // Configurar la velocidad de la bala
+            Rigidbody2D rbShot = shotTransform.GetComponent<Rigidbody2D>();
+            rbShot.velocity = direction.normalized * shotSpeed;
+
+            // Desactivar la bala después de un tiempo (ajusta según tus necesidades)
+            StartCoroutine(DesactivarBala(shotTransform.gameObject, 0.5f));
+        }
+    }
+
+    IEnumerator DesactivarBala(GameObject shot, float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        shot.SetActive(false);
     }
 
     private void OnDrawGizmosSelected()
     {
-        // Dibuja un gizmo en el editor para visualizar el rango de visión
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, visionRange);
-    }
-
-    private IEnumerator ActiveLauncher()
-    {
-        while (true)
-        {
-            animator.SetBool("isShooting", true);
-            yield return new WaitForSeconds(timeBetweenShots);
-
-            // Find a disable shot and active it
-            for (int i = 0; i < numberOfShots; i++)
-            {
-                if (!shots[i].gameObject.activeSelf)
-                {
-                    shots[i].gameObject.SetActive(true);
-                    shots[i].GetComponent<TurretBullet>().target = player.transform;
-                    shots[i].GetComponent<TurretBullet>().Disparar();
-                    break;
-                }
-            }
-        }
     }
 }
