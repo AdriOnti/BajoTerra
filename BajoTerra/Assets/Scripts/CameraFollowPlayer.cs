@@ -13,6 +13,6 @@ public class CameraFollowPlayer : MonoBehaviour
 
     void Update()
     {
-        //transform.position = player.transform.position;
+        transform.position = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z - 1f);
     }
 }
