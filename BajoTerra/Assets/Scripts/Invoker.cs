@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Invoker : MonoBehaviour
 {
+    [Header("Summoner Setting")]
     public GameObject summon;
     public float timeBetweenSummon = 2.5f;
     public int maxSummons = 8;

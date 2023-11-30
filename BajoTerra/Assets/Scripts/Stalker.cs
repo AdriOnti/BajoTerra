@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Stalker : Enemy
 {
-    public GameObject player;
     private float distance;
     private SpriteRenderer sr;
     public bool iAmSummon;
@@ -14,6 +13,7 @@ public class Stalker : Enemy
     {
         sr = GetComponent<SpriteRenderer>();
         base.animator = GetComponent<Animator>();
+        base.player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame

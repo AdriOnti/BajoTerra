@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class Enemy : Character
 {
+    [Header("Drop Item")]
     public GameObject dropItem;
+
+    protected GameObject player;
 
     private void Start()
     {
         base.animator = GetComponent<Animator>();
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     private void Update()
@@ -23,7 +27,7 @@ public class Enemy : Character
     {
         if(collision.gameObject.tag == "Player")
         {
-            hp--;
+            hp -= damage;
         }
     }
 

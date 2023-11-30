@@ -8,11 +8,11 @@ public class CameraFollowPlayer : MonoBehaviour
 
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<GameObject>();
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     void Update()
     {
-        transform.position = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z - 1f);
+        transform.position = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z - 10f);
     }
 }

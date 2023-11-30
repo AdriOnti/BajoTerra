@@ -2,30 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Turret : MonoBehaviour
+public class Turret : Enemy
 {
-    public float visionRange = 5f;
-    public float rotateSpeed = 3f;
-    public float shotSpeed = 50f;
+    [Header("Settings")]
+    public float visionRange = 2f;
+    public float rotateSpeed = 30f;
+    public float shotSpeed = 25f;
 
-
-    private GameObject player;
-    private GameObject projectile;
-
-
+    [Header("TurretBullets Setting")]
     public int projectileQuantity;
     public float bulletLifeTime;
     public float timeBetweenShots;
 
+    // PRIVATE ATTRIBUTES
+    //private GameObject player;
+    private GameObject projectile;
     private List<Transform> pool;
-    private Animator animator;
+    private Vector3 position;
 
     void Start()
     {
-        animator = GetComponent<Animator>();
-        player = GameObject.FindGameObjectWithTag("Player");
+        base.animator = GetComponent<Animator>();
+        base.player = GameObject.FindGameObjectWithTag("Player");
         projectile = GameObject.Find("TurretBullet");
-        
+
+        transform.position = position;
         InstantiatePoolItem();
     }
 
@@ -36,10 +37,7 @@ public class Turret : MonoBehaviour
             RotatePlayer();
             StartCoroutine(Shot());
         }
-        else
-        {
-            animator.SetBool("isShooting", false);
-        }
+        else animator.SetBool("isShooting", false);
     }
 
     void InstantiatePoolItem()
@@ -69,7 +67,7 @@ public class Turret : MonoBehaviour
         {
             if (!shotTransform.gameObject.activeSelf && animator.GetBool("isShooting"))
             {
-                
+
                 shotTransform.position = transform.position;
                 shotTransform.rotation = transform.rotation;
                 shotTransform.gameObject.SetActive(true);
