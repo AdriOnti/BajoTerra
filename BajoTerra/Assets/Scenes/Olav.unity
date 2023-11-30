@@ -355,7 +355,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -393, y: 267}
+  m_AnchoredPosition: {x: -328, y: 219}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &266186424
@@ -964,7 +964,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -1053,7 +1053,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -336, y: 267.3}
+  m_AnchoredPosition: {x: -271, y: 219.29997}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1288489076
@@ -1636,7 +1636,7 @@ GameObject:
   - component: {fileID: 2038587866}
   m_Layer: 0
   m_Name: Turret
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1649,7 +1649,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2038587861}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: b1283a2396be7c74196f6434a93faaee, type: 2}
   m_CullingMode: 0
@@ -1741,12 +1741,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 882a39e724bdbb9499934cf9424aeb8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  visionRange: 5
-  rotateSpeed: 3
+  visionRange: 8
+  rotateSpeed: 30
   shotSpeed: 50
   player: {fileID: 1469970474}
   projectile: {fileID: 2133061011}
-  projectileQuantity: 5
+  projectileQuantity: 2
+  bulletLifeTime: 0.5
+  timeBetweenShots: 5
 --- !u!61 &2038587866
 BoxCollider2D:
   m_ObjectHideFlags: 0
