@@ -1647,7 +1647,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &624190510
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11022,7 +11022,7 @@ MonoBehaviour:
   speed: 0
   damage: 2
   dropItem: {fileID: 0}
-  visionRange: 2
+  visionRange: 3
   rotateSpeed: 30
   shotSpeed: 25
   projectileQuantity: 2

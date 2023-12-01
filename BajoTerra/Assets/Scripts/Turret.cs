@@ -18,7 +18,6 @@ public class Turret : Enemy
     //private GameObject player;
     private GameObject projectile;
     private List<Transform> pool;
-    private Vector3 position;
 
     void Start()
     {
@@ -26,7 +25,6 @@ public class Turret : Enemy
         base.player = GameObject.FindGameObjectWithTag("Player");
         projectile = GameObject.Find("TurretBullet");
 
-        transform.position = position;
         InstantiatePoolItem();
     }
 

@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class Player : Character
 {
     private Rigidbody2D rb;
+    private PlayerInputs inputs;
 
     // Input Variable
     private Vector2 movement;
@@ -17,6 +18,9 @@ public class Player : Character
         rb = GetComponent<Rigidbody2D>();
         base.animator = GetComponent<Animator>();
         GameObject.Find("hpText").GetComponent<Text>().text = Convert.ToString(hp);
+        inputs = new PlayerInputs();
+
+        //inputs.InGame.Movement.performed += MovePlayer;
     }
 
     private void OnMovement(InputValue value)
@@ -35,8 +39,10 @@ public class Player : Character
         PlayerAttack();
     }
 
-    private void MovePlayer()
+    public void MovePlayer(/*InputAction.CallbackContext ctx*/)
     {
+        //movement = ctx.ReadValue<Vector2>();
+
         if (!animator.GetBool("isAttacking")) { rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime); }
 
         if (movement.x != 0 || movement.y != 0)

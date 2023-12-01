@@ -8,7 +8,6 @@ public class Stalker : Enemy
     private SpriteRenderer sr;
     public bool iAmSummon;
 
-    // Start is called before the first frame update
     void Start()
     {
         sr = GetComponent<SpriteRenderer>();
