@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEditor.Timeline.Actions;
 using UnityEngine;
 
-public class Invoker : MonoBehaviour
+public class Invoker : Enemy
 {
     [Header("Summoner Setting")]
     public GameObject summon;
@@ -12,12 +12,11 @@ public class Invoker : MonoBehaviour
 
     private GameObject[] summons;
     public bool isSummoning;
-    private Animator animator;
 
     void Start()
     {
-        animator = GetComponent<Animator>();
-        animator.Play("InvokerIdle");
+        base.animator = GetComponent<Animator>();
+        base.animator.Play("InvokerIdle");
         InstantiateSummons();
     }
 

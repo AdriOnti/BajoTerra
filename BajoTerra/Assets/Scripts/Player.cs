@@ -8,42 +8,53 @@ public class Player : Character
 {
     private Rigidbody2D rb;
     private PlayerInputs inputs;
+    public static Player Instance;
 
     // Input Variable
     private Vector2 movement;
     private Vector2 attack;
 
+    private void OnEnable() { inputs.Enable(); }
+    private void OnDisable() { inputs.Disable(); }
+
     private void Awake()
     {
+        if (Instance == null) { Instance = this; }
+        else if (Instance != this)  { Destroy(gameObject); }
+
         rb = GetComponent<Rigidbody2D>();
         base.animator = GetComponent<Animator>();
         GameObject.Find("hpText").GetComponent<Text>().text = Convert.ToString(hp);
         inputs = new PlayerInputs();
 
-        //inputs.InGame.Movement.performed += MovePlayer;
+        inputs.InGame.Movement.performed += ReadMove;
+        inputs.InGame.Movement.canceled += ReadMove;
+        inputs.InGame.Attack.performed += ReadAttack;
+        inputs.InGame.Attack.canceled += ReadAttack;
     }
 
-    private void OnMovement(InputValue value)
+    private void ReadMove(InputAction.CallbackContext ctx)
     {
-        movement = value.Get<Vector2>();
+        movement = ctx.ReadValue<Vector2>();
     }
 
-    private void OnAttack(InputValue value)
+    private void ReadAttack(InputAction.CallbackContext ctx)
     {
-        attack = value.Get<Vector2>();
+        attack = ctx.ReadValue<Vector2>();
     }
 
     private void FixedUpdate()
     {
-        MovePlayer();
+        PlayerMove();
         PlayerAttack();
     }
 
-    public void MovePlayer(/*InputAction.CallbackContext ctx*/)
+    public void PlayerMove()
     {
-        //movement = ctx.ReadValue<Vector2>();
-
-        if (!animator.GetBool("isAttacking")) { rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime); }
+        if (!animator.GetBool("isAttacking") && movement.sqrMagnitude > 0)
+        {
+            rb.MovePosition(rb.position + movement.normalized * speed * Time.fixedDeltaTime);
+        }
 
         if (movement.x != 0 || movement.y != 0)
         {
@@ -56,7 +67,7 @@ public class Player : Character
         if(hp <= 0) { StartCoroutine(DeadPlayer()); }
     }
 
-    private void PlayerAttack()
+    public void PlayerAttack()
     {
         if (attack.x != 0 || attack.y != 0)
         {
@@ -84,7 +95,7 @@ public class Player : Character
             hp--;
             GameObject.Find("hpText").GetComponent<Text>().text = Convert.ToString(hp);
             animator.SetBool("isHurt", true);
-            yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+            yield return new WaitForSeconds(0.1f);
             animator.SetBool("isHurt", false);
         }
     }
@@ -92,7 +103,7 @@ public class Player : Character
     private IEnumerator DeadPlayer()
     {
         animator.SetBool("isDead", true);
-        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+        yield return new WaitForSeconds(2.0f);
 
         this.gameObject.SetActive(false);
     }
