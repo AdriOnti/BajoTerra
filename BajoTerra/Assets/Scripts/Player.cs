@@ -9,6 +9,7 @@ public class Player : Character
     private Rigidbody2D rb;
     private PlayerInputs inputs;
     public static Player Instance;
+    public GameObject melee;
 
     // Input Variable
     private Vector2 movement;
@@ -31,6 +32,8 @@ public class Player : Character
         inputs.InGame.Movement.canceled += ReadMove;
         inputs.InGame.Attack.performed += ReadAttack;
         inputs.InGame.Attack.canceled += ReadAttack;
+
+        melee.SetActive(false);
     }
 
     private void ReadMove(InputAction.CallbackContext ctx)
@@ -76,8 +79,10 @@ public class Player : Character
             animator.SetFloat("posY", attack.y);
 
             animator.SetBool("isAttacking", true);
+
+            melee.SetActive(true);
         }
-        else { animator.SetBool("isAttacking", false); }
+        else { animator.SetBool("isAttacking", false); melee.SetActive(false); }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
