@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 328db8d75f9be184bad75e65a487398d, type: 3}
+  m_Name: StrengthPot
+  m_EditorClassIdentifier: 
+  id: 3
+  itemName: Strength Potion
+  value: 1
+  icon: {fileID: -2147394354, guid: 48e9c5728924a6b4eb6fc85b59992e6e, type: 3}
+  itemType: 2

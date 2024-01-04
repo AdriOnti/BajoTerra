@@ -27,7 +27,7 @@ public class Enemy : Character
     {
         if(collision.gameObject.tag == "PlayerAttack")
         {
-            hp -= damage;
+            currentHp -= damage;
         }
     }
 

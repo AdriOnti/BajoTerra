@@ -63,7 +63,8 @@ public class Invoker : Enemy
                 summons[i].transform.position = transform.position;
                 summons[i].SetActive(true);
                 summons[i].GetComponent<Stalker>().speed = 7;
-                summons[i].GetComponent<Stalker>().hp = 2;
+                summons[i].GetComponent<Stalker>().currentHp = 2;
+                summons[i].GetComponent<Stalker>().maxHp = 2;
                 summons[i].GetComponent<Stalker>().iAmSummon = true;
                 summonsActive++;
             }

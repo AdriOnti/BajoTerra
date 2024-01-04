@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.TestTools;
 using UnityEngine.UI;
 
 public class Player : Character
@@ -10,6 +11,10 @@ public class Player : Character
     private PlayerInputs inputs;
     public static Player Instance;
     public GameObject melee;
+
+    [Header("Player Stadistics")]
+    public Text hpText;
+    public Text attackText;
 
     // Input Variable
     private Vector2 movement;
@@ -25,7 +30,6 @@ public class Player : Character
 
         rb = GetComponent<Rigidbody2D>();
         base.animator = GetComponent<Animator>();
-        GameObject.Find("hpText").GetComponent<Text>().text = Convert.ToString(hp);
         inputs = new PlayerInputs();
 
         inputs.InGame.Movement.performed += ReadMove;
@@ -50,6 +54,7 @@ public class Player : Character
     {
         PlayerMove();
         PlayerAttack();
+        ResetUI();
     }
 
     public void PlayerMove()
@@ -67,7 +72,7 @@ public class Player : Character
             animator.SetBool("isWalking", true);
         }
         else { animator.SetBool("isWalking", false); }
-        if(hp <= 0) { StartCoroutine(DeadPlayer()); }
+        if(currentHp <= 0) { StartCoroutine(DeadPlayer()); }
     }
 
     public void PlayerAttack()
@@ -95,10 +100,9 @@ public class Player : Character
 
     private IEnumerator HurtPlayer()
     {
-        if (hp != 0)
+        if (currentHp != 0)
         {
-            hp--;
-            GameObject.Find("hpText").GetComponent<Text>().text = Convert.ToString(hp);
+            currentHp--;
             animator.SetBool("isHurt", true);
             yield return new WaitForSeconds(0.1f);
             animator.SetBool("isHurt", false);
@@ -111,5 +115,21 @@ public class Player : Character
         yield return new WaitForSeconds(2.0f);
 
         this.gameObject.SetActive(false);
+    }
+
+    public void IncreaseMaxHealth(int value) { maxHp += value; }
+
+    public void Cure(int value)
+    {
+        if(currentHp < maxHp) { currentHp += value; }
+        if(currentHp >= maxHp) { currentHp = maxHp; }
+    }
+
+    public void IncreaseDamage(int value) {  damage += value; }
+
+    public void ResetUI()
+    {
+        hpText.text = Convert.ToString($"{currentHp}/{maxHp}");
+        attackText.text = Convert.ToString($"{damage}");
     }
 }

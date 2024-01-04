@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     int trapType;
+    public static GameManager instance;
 
     // Start is called before the first frame update
     void Start()
@@ -16,5 +17,12 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public GameObject GetInventory()
+    {
+        GameObject inventory = GameObject.Find("Inventory");
+        Debug.Log(inventory);
+        return inventory;
     }
 }

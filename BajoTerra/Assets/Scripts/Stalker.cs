@@ -31,7 +31,7 @@ public class Stalker : Enemy
         if (distance < 3) animator.SetBool("stalkerAttack", true);
         else animator.SetBool("stalkerAttack", false);
 
-        if(hp <= 0)
+        if(currentHp <= 0)
         {
             speed = 0;
             DetectDead("StalkerDeath");
