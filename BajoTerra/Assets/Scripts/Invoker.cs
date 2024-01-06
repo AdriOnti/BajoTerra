@@ -12,18 +12,25 @@ public class Invoker : Enemy
 
     private GameObject[] summons;
     public bool isSummoning;
+    private HealthBar healthBar;
 
     void Start()
     {
         base.animator = GetComponent<Animator>();
         base.animator.Play("InvokerIdle");
         InstantiateSummons();
+
+        healthBar = GetComponentInChildren<HealthBar>();
+
+        if (healthBar != null) { healthBar.UpdateBar(currentHp, maxHp); }
+        else { Debug.LogError("HealthBar component not found in children."); }
     }
 
     private void Update()
     {
+        healthBar.UpdateBar(currentHp, maxHp);
 
-        if(!isSummoning)
+        if (!isSummoning)
         {
             StartCoroutine(StopAnimation());
             StartCoroutine(ActiveSummons());

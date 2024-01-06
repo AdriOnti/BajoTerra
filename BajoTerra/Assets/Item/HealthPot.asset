@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 2
   itemName: Health Potion
-  value: 10
+  value: 4
   icon: {fileID: 1864035908, guid: 7b66eef01b2049244bd3776ed84fd162, type: 3}
   itemType: 1

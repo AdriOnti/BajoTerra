@@ -18,12 +18,18 @@ public class Turret : Enemy
     //private GameObject player;
     private GameObject projectile;
     private List<Transform> pool;
+    private HealthBar healthBar;
 
     void Start()
     {
         base.animator = GetComponent<Animator>();
         base.player = GameObject.FindGameObjectWithTag("Player");
         projectile = GameObject.Find("TurretBullet");
+
+        healthBar = GetComponentInChildren<HealthBar>();
+
+        if (healthBar != null) { healthBar.UpdateBar(currentHp, maxHp); }
+        else { Debug.LogError("HealthBar component not found in children."); }
 
         InstantiatePoolItem();
     }
@@ -36,6 +42,8 @@ public class Turret : Enemy
             StartCoroutine(Shot());
         }
         else animator.SetBool("isShooting", false);
+
+        healthBar.UpdateBar(currentHp, maxHp);
     }
 
     void InstantiatePoolItem()
@@ -60,12 +68,17 @@ public class Turret : Enemy
 
     IEnumerator Shot()
     {
+        if (animator.GetBool("isShooting"))
+        {
+            yield break; // Evitar disparar múltiples balas simultáneamente
+        }
+
         animator.SetBool("isShooting", true);
+
         foreach (Transform shotTransform in pool)
         {
-            if (!shotTransform.gameObject.activeSelf && animator.GetBool("isShooting"))
+            if (!shotTransform.gameObject.activeSelf)
             {
-
                 shotTransform.position = transform.position;
                 shotTransform.rotation = transform.rotation;
                 shotTransform.gameObject.SetActive(true);
@@ -76,12 +89,17 @@ public class Turret : Enemy
                 rbShot.velocity = direction.normalized * shotSpeed;
 
                 StartCoroutine(DesactivarBala(shotTransform.gameObject, bulletLifeTime));
+
+                // Esperar antes de disparar la siguiente bala
+                yield return new WaitForSeconds(timeBetweenShots); // Ajusta según tus necesidades
             }
-            // Esperar antes de disparar la siguiente bala
-            yield return new WaitForSeconds(timeBetweenShots); // Ajusta según tus necesidades
-            animator.SetBool("isShooting", false);
         }
+
+        // Esperar un tiempo después de disparar todas las balas y luego desactivar la animación
+        yield return new WaitForSeconds(bulletLifeTime); // Puedes ajustar esto según tus necesidades
+        animator.SetBool("isShooting", false);
     }
+
 
 
     IEnumerator DesactivarBala(GameObject shot, float waitTime)

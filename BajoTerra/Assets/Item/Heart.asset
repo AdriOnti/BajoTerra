@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 1
   itemName: Heart
-  value: 4
+  value: 10
   icon: {fileID: 21300000, guid: 70a2239c09d5bec4198b1490fa464221, type: 3}
+  itemType: 0

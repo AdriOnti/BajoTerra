@@ -16,6 +16,7 @@ public class Player : Character
     public Text hpText;
     public Text attackText;
 
+
     // Input Variable
     private Vector2 movement;
     private Vector2 attack;

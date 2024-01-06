@@ -23,10 +23,10 @@ public class InventoryItemController : MonoBehaviour
         switch (item.itemType)
         {
             case Item.ItemType.Heart:
-                Player.Instance.Cure(item.value);
+                Player.Instance.IncreaseMaxHealth(item.value);
                 break;
             case Item.ItemType.HealthPot:
-                Player.Instance.IncreaseMaxHealth(item.value);
+                Player.Instance.Cure(item.value);
                 break;
             case Item.ItemType.StrengthPot:
                 Player.Instance.IncreaseDamage(item.value);
