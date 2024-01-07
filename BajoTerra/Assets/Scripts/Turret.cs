@@ -43,7 +43,23 @@ public class Turret : Enemy
         }
         else animator.SetBool("isShooting", false);
 
-        healthBar.UpdateBar(currentHp, maxHp);
+        healthBar.UpdateBar(currentHp, maxHp); 
+        if (currentHp <= 0)
+        {
+            speed = 0;
+            DetectDead("StalkerDeath");
+            StartCoroutine(StopAnimation());
+        }
+    }
+
+    private IEnumerator StopAnimation()
+    {
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+        animator.enabled = false;
+        yield return new WaitForSeconds(0.01f);
+        animator.enabled = true;
+
+        this.gameObject.SetActive(false);
     }
 
     void InstantiatePoolItem()

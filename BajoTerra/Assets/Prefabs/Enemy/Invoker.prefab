@@ -316,7 +316,7 @@ RectTransform:
   m_Father: {fileID: 9205133105160176639}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -406,6 +406,7 @@ GameObject:
   - component: {fileID: 7693867034957341802}
   - component: {fileID: 378760508651985312}
   - component: {fileID: 6909566617623200408}
+  - component: {fileID: 1609919852332821293}
   m_Layer: 0
   m_Name: Invoker
   m_TagString: Enemy
@@ -515,12 +516,47 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHp: 3
-  currentHp: 1
+  currentHp: 3
   speed: 0
-  damage: 2
+  damage: 1
   dropItem: {fileID: 0}
-  summon: {fileID: 0}
+  summon: {fileID: 1244057088563596340, guid: f18d9c23531aedf4bb45924828c128a1, type: 3}
   timeBetweenSummon: 5
   maxSummons: 2
   summonsActive: 0
   isSummoning: 0
+--- !u!70 &1609919852332821293
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9064378259649603942}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.028775534, y: 0.007193923}
+  m_Size: {x: 0.29642805, y: 0.5122447}
+  m_Direction: 0

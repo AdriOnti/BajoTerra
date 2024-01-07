@@ -27,7 +27,7 @@ public class Enemy : Character
     {
         if (collision.gameObject.tag == "Player")
         {
-            currentHp -= damage;
+            currentHp -= Player.Instance.damage;
             if (currentHp <= 0)
             {
                 DetectDead("Dead");

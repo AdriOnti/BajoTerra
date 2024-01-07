@@ -95,17 +95,19 @@ public class Player : Character
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            StartCoroutine(HurtPlayer());
+            StartCoroutine(HurtPlayer(collision.gameObject));
         }
     }
 
-    private IEnumerator HurtPlayer()
+    private IEnumerator HurtPlayer(GameObject enemy)
     {
         if (currentHp != 0)
         {
-            currentHp--;
+            currentHp -= enemy.GetComponent<Enemy>().damage;
             animator.SetBool("isHurt", true);
+            //rb.simulated = false;
             yield return new WaitForSeconds(0.1f);
+            //rb.simulated = true;
             animator.SetBool("isHurt", false);
         }
     }

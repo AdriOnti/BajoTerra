@@ -12,5 +12,6 @@ public class Character : MonoBehaviour
     public virtual void DetectDead(string animationName)
     {
         animator.Play(animationName);
+        gameObject.SetActive(false);
     }
 }

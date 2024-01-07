@@ -29,6 +29,11 @@ public class Invoker : Enemy
     private void Update()
     {
         healthBar.UpdateBar(currentHp, maxHp);
+        if (currentHp <= 0)
+        {
+            speed = 0;
+            DetectDead("InvokerDeath");
+        }
 
         if (!isSummoning)
         {
@@ -41,6 +46,7 @@ public class Invoker : Enemy
             StartCoroutine(StopAnimation());
             animator.SetBool("isSummoning", false);
         }
+
     }
 
     void InstantiateSummons()

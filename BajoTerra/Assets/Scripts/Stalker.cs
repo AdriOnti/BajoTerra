@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.U2D;
 
 public class Stalker : Enemy
 {
@@ -8,6 +9,8 @@ public class Stalker : Enemy
     private SpriteRenderer sr;
     public bool iAmSummon;
     private HealthBar healthBar;
+    [SerializeField] private float explosionForce;
+    [SerializeField] private GameObject explosionEffect;
 
     void Start()
     {
@@ -34,8 +37,9 @@ public class Stalker : Enemy
         if (speed > 0) animator.SetBool("stalkerRun", true);
         else animator.SetBool("stalkerRun", false);
 
-        if (distance < 3) animator.SetBool("stalkerAttack", true);
-        else animator.SetBool("stalkerAttack", false);
+        //if (distance < 3) animator.SetBool("stalkerAttack", true);
+        //else animator.SetBool("stalkerAttack", false);
+        if(distance < 3) Explosion();
 
         healthBar.UpdateBar(currentHp, maxHp);
         if(currentHp <= 0)
@@ -55,6 +59,32 @@ public class Stalker : Enemy
 
         this.gameObject.SetActive(false);
         if(iAmSummon) this.gameObject.GetComponentInParent<Invoker>().summonsActive--;
+    }
+
+    public void Explosion()
+    {
+        Collider2D[] objects = Physics2D.OverlapCircleAll(transform.position, 3f);
+
+        foreach (Collider2D collision in objects)
+        { 
+            Rigidbody2D rb2D = collision.GetComponent<Rigidbody2D>();
+            if(rb2D != null)
+            {
+                Vector2 direction = collision.transform.position - transform.position;
+                float distance = 1 + direction.magnitude;
+                float finalForce = explosionForce / distance;
+                rb2D.AddForce(direction * finalForce);
+                explosionEffect.SetActive(true);
+                StartCoroutine(DestroyExplosion());
+                StartCoroutine(StopAnimation());
+            }
+        }
+    }
+
+    private IEnumerator DestroyExplosion()
+    {
+        yield return new WaitForSeconds(10f);
+        explosionEffect.SetActive(false);
     }
 
 }
