@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.TestTools;
@@ -9,13 +10,29 @@ public class Player : Character
 {
     private Rigidbody2D rb;
     private PlayerInputs inputs;
+    private List<Transform> pool;
     public static Player Instance;
+    private enum Weapon
+    {
+        Melee,
+        Shotgun,
+        FlameThrower
+    }
+
+    private Weapon actualWeapon;
+
+    [Header("Weapons")]
     public GameObject melee;
+    public GameObject bullet;
 
     [Header("Player Stadistics")]
     public Text hpText;
     public Text attackText;
-
+    public Text weaponText;
+    public int projectileQuantity;
+    public float shotSpeed;
+    public float timeBetweenShots;
+    public float bulletLifeTime;
 
     // Input Variable
     private Vector2 movement;
@@ -39,6 +56,9 @@ public class Player : Character
         inputs.InGame.Attack.canceled += ReadAttack;
 
         melee.SetActive(false);
+        actualWeapon = Weapon.Melee;
+
+        InstantiatePoolItem();
     }
 
     private void ReadMove(InputAction.CallbackContext ctx)
@@ -55,6 +75,7 @@ public class Player : Character
     {
         PlayerMove();
         PlayerAttack();
+        DecideWeapon();
         ResetUI();
     }
 
@@ -85,10 +106,16 @@ public class Player : Character
             animator.SetFloat("posY", attack.y);
 
             animator.SetBool("isAttacking", true);
-
-            melee.SetActive(true);
+            if (actualWeapon == Weapon.Melee) { melee.SetActive(true); }
+            if (actualWeapon == Weapon.Shotgun) { StartCoroutine(Shot()); }
         }
-        else { animator.SetBool("isAttacking", false); melee.SetActive(false); }
+        else
+        { 
+            animator.SetBool("isAttacking", false); 
+            if(actualWeapon == Weapon.Melee) { melee.SetActive(false); }
+        }
+
+        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -103,6 +130,7 @@ public class Player : Character
     {
         if (currentHp != 0)
         {
+            Debug.Log(enemy.GetComponent<Enemy>().damage);
             currentHp -= enemy.GetComponent<Enemy>().damage;
             animator.SetBool("isHurt", true);
             //rb.simulated = false;
@@ -134,5 +162,57 @@ public class Player : Character
     {
         hpText.text = Convert.ToString($"{currentHp}/{maxHp}");
         attackText.text = Convert.ToString($"{damage}");
+        weaponText.text = $"Weapon: {actualWeapon}";
+    }
+
+    public void DecideWeapon()
+    {
+        if (Input.GetKey(KeyCode.Alpha1)) { actualWeapon = Weapon.Melee; }
+        if (Input.GetKey(KeyCode.Alpha2)) { actualWeapon = Weapon.Shotgun; }
+        if (Input.GetKey(KeyCode.Alpha3)) { actualWeapon = Weapon.FlameThrower; }
+    }
+
+    private IEnumerator Shot()
+    {
+        foreach (Transform shotTransform in pool)
+        {
+            if (!shotTransform.gameObject.activeSelf)
+            {
+                shotTransform.position = transform.position;
+                shotTransform.rotation = transform.rotation;
+                shotTransform.gameObject.SetActive(true);
+
+                Vector2 direction = new Vector2(attack.x, attack.y);
+
+                Rigidbody2D rbShot = shotTransform.GetComponent<Rigidbody2D>();
+                rbShot.velocity = direction.normalized * shotSpeed;
+
+                StartCoroutine(DesactivarBala(shotTransform.gameObject, bulletLifeTime));
+
+                // Esperar antes de disparar la siguiente bala
+                yield return new WaitForSeconds(timeBetweenShots);
+            }
+        }
+
+        // Esperar un tiempo después de disparar todas las balas y luego desactivar la animación
+        yield return new WaitForSeconds(bulletLifeTime);
+    }
+
+    IEnumerator DesactivarBala(GameObject shot, float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        shot.SetActive(false);
+    }
+
+    void InstantiatePoolItem()
+    {
+        pool = new List<Transform>();
+
+        for (int i = 0; i < projectileQuantity; i++)
+        {
+            GameObject shot = Instantiate(bullet, transform.position, Quaternion.identity, transform);
+            shot.SetActive(false);
+            pool.Add(shot.transform);
+        }
     }
 }

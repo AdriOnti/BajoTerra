@@ -13,7 +13,6 @@ public class HealthBar : MonoBehaviour
 
     public void UpdateBar(int current, int max)
     {
-        //Debug.Log("Current: " + current + ", Max: " + max);
         slider.value = (float)current / max;
     }
 
