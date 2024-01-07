@@ -25,10 +25,13 @@ public class Player : Character
     public GameObject melee;
     public GameObject bullet;
 
-    [Header("Player Stadistics")]
+    [Header("GUI")]
     public Text hpText;
     public Text attackText;
+    public Text speedText;
     public Text weaponText;
+
+    [Header("Player Stadistics")]
     public int projectileQuantity;
     public float shotSpeed;
     public float timeBetweenShots;
@@ -157,11 +160,13 @@ public class Player : Character
     }
 
     public void IncreaseDamage(int value) {  damage += value; }
+    public void IncreaseSpeed(int value) { speed += value; }
 
     public void ResetUI()
     {
         hpText.text = Convert.ToString($"{currentHp}/{maxHp}");
         attackText.text = Convert.ToString($"{damage}");
+        speedText.text = Convert.ToString($"{speed}");
         weaponText.text = $"Weapon: {actualWeapon}";
     }
 

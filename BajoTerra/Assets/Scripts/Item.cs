@@ -15,6 +15,7 @@ public class Item : ScriptableObject
     {
         Heart,
         HealthPot,
-        StrengthPot
+        StrengthPot,
+        SpeedPot
     }
 }

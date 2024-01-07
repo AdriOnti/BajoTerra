@@ -31,6 +31,9 @@ public class InventoryItemController : MonoBehaviour
             case Item.ItemType.StrengthPot:
                 Player.Instance.IncreaseDamage(item.value);
                 break;
+            case Item.ItemType.SpeedPot:
+                Player.Instance.IncreaseSpeed(item.value);
+                break;
         }
 
         RemoveItem();
