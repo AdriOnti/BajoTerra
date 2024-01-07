@@ -3057,7 +3057,7 @@ GameObject:
   - component: {fileID: 752878352}
   m_Layer: 0
   m_Name: MeleeCircle-removebg-preview
-  m_TagString: PlayerAttack
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5088,6 +5088,10 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 698555051}
+    - target: {fileID: 6909566617623200408, guid: 5703e10ce15629847981b3291484c9ef, type: 3}
+      propertyPath: maxSummons
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 9064378259649603942, guid: 5703e10ce15629847981b3291484c9ef, type: 3}
       propertyPath: m_Name
       value: Invoker
