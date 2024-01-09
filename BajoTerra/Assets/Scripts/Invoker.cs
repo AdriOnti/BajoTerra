@@ -14,6 +14,14 @@ public class Invoker : Enemy
     public bool isSummoning;
     private HealthBar healthBar;
 
+    [Header("Summon Setting")]
+    [SerializeField] private int currentHPSummon;
+    [SerializeField] private int maxHPSummon;
+    [SerializeField] private float speedSummon;
+    [SerializeField] private float minDistanceSummon;
+    [SerializeField] private float explosionForceSummon;
+
+
     void Start()
     {
         base.animator = GetComponent<Animator>();
@@ -75,9 +83,23 @@ public class Invoker : Enemy
                 animator.SetBool("isSummoning", true);
                 summons[i].transform.position = transform.position;
                 summons[i].SetActive(true);
-                summons[i].GetComponent<Stalker>().speed = 7;
-                summons[i].GetComponent<Stalker>().currentHp = 2;
-                summons[i].GetComponent<Stalker>().maxHp = 2;
+
+                Stalker summon = summons[i].GetComponent<Stalker>();
+                // Configure the summon
+                //summon.speed = speedSummon;
+                //summon.currentHp = currentHPSummon;
+                //summon.maxHp = maxHPSummon;
+                //summon.minDistance = minDistanceSummon;
+                //summon.explosionForce = explosionForceSummon;
+                //summon.iAmSummon = true;
+                //summonsActive++;
+
+
+                summons[i].GetComponent<Stalker>().speed = speedSummon;
+                summons[i].GetComponent<Stalker>().currentHp = currentHPSummon;
+                summons[i].GetComponent<Stalker>().maxHp = maxHPSummon;
+                summons[i].GetComponent<Stalker>().minDistance = minDistanceSummon;
+                summons[i].GetComponent<Stalker>().explosionForce = explosionForceSummon;
                 summons[i].GetComponent<Stalker>().iAmSummon = true;
                 summonsActive++;
             }

@@ -286,6 +286,7 @@ MonoBehaviour:
   speed: 5
   damage: 3
   dropItem: {fileID: 0}
+  minDistance: 3
   iAmSummon: 0
   explosionForce: 2
   explosionEffect: {fileID: 2145732152525303716}

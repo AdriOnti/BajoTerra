@@ -7,9 +7,12 @@ public class Stalker : Enemy
 {
     private float distance;
     private SpriteRenderer sr;
-    public bool iAmSummon;
     private HealthBar healthBar;
-    [SerializeField] private float explosionForce;
+
+    [Header("Stalker Settings")]
+    public float minDistance;
+    public bool iAmSummon;
+    public float explosionForce;
     [SerializeField] private GameObject explosionEffect;
 
     void Start()
@@ -39,7 +42,7 @@ public class Stalker : Enemy
 
         //if (distance < 3) animator.SetBool("stalkerAttack", true);
         //else animator.SetBool("stalkerAttack", false);
-        if(distance < 3) Explosion();
+        if(distance < minDistance) Explosion();
 
         healthBar.UpdateBar(currentHp, maxHp);
         if(currentHp <= 0)
@@ -63,7 +66,7 @@ public class Stalker : Enemy
 
     public void Explosion()
     {
-        Collider2D[] objects = Physics2D.OverlapCircleAll(transform.position, 3f);
+        Collider2D[] objects = Physics2D.OverlapCircleAll(transform.position, minDistance);
 
         foreach (Collider2D collision in objects)
         { 
@@ -83,7 +86,7 @@ public class Stalker : Enemy
 
     private IEnumerator DestroyExplosion()
     {
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(2f);
         explosionEffect.SetActive(false);
     }
 

@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GetHUD();
         trapType = 0;
     }
 
@@ -19,10 +20,8 @@ public class GameManager : MonoBehaviour
         
     }
 
-    public GameObject GetInventory()
+    public void GetHUD() 
     {
-        GameObject inventory = GameObject.Find("Inventory");
-        Debug.Log(inventory);
-        return inventory;
+        // Objetivo, obtener los textos del HUD
     }
 }

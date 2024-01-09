@@ -1096,7 +1096,7 @@ GameObject:
   - component: {fileID: 305168558}
   - component: {fileID: 305168557}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: HealthTXT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1779,7 +1779,7 @@ GameObject:
   - component: {fileID: 345551493}
   - component: {fileID: 345551492}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: SpeedTXT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2262,6 +2262,50 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &545984728
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 545984729}
+  - component: {fileID: 545984730}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &545984729
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 545984728}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 119.13327, y: 518.1859, z: -1.6739175}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &545984730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 545984728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb73152b4409037478f61ae38b7758ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &569008638
 GameObject:
   m_ObjectHideFlags: 0
@@ -4776,7 +4820,7 @@ GameObject:
   - component: {fileID: 1244518163}
   - component: {fileID: 1244518162}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: AttackTXT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5389,6 +5433,7 @@ MonoBehaviour:
   currentHp: 10
   speed: 5
   damage: 1
+  actualWeapon: 0
   melee: {fileID: 752878348}
   bullet: {fileID: 1278696436}
   hpText: {fileID: 305168557}
@@ -5537,8 +5582,36 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 698555051}
     - target: {fileID: 6909566617623200408, guid: 5703e10ce15629847981b3291484c9ef, type: 3}
+      propertyPath: maxHp
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 6909566617623200408, guid: 5703e10ce15629847981b3291484c9ef, type: 3}
+      propertyPath: currentHp
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 6909566617623200408, guid: 5703e10ce15629847981b3291484c9ef, type: 3}
       propertyPath: maxSummons
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6909566617623200408, guid: 5703e10ce15629847981b3291484c9ef, type: 3}
+      propertyPath: maxHPSummon
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6909566617623200408, guid: 5703e10ce15629847981b3291484c9ef, type: 3}
+      propertyPath: speedSummon
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6909566617623200408, guid: 5703e10ce15629847981b3291484c9ef, type: 3}
+      propertyPath: currentHPSummon
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6909566617623200408, guid: 5703e10ce15629847981b3291484c9ef, type: 3}
+      propertyPath: minDistanceSummon
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6909566617623200408, guid: 5703e10ce15629847981b3291484c9ef, type: 3}
+      propertyPath: explosionForceSummon
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9064378259649603942, guid: 5703e10ce15629847981b3291484c9ef, type: 3}
       propertyPath: m_Name
@@ -5568,7 +5641,7 @@ GameObject:
   - component: {fileID: 1525678383}
   - component: {fileID: 1525678382}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: WeaponTXT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13456,3 +13529,4 @@ SceneRoots:
   - {fileID: 6512079108690044283}
   - {fileID: 8792065031420606075}
   - {fileID: 1794152898}
+  - {fileID: 545984729}
