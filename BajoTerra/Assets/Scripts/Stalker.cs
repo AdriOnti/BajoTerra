@@ -40,9 +40,12 @@ public class Stalker : Enemy
         if (speed > 0) animator.SetBool("stalkerRun", true);
         else animator.SetBool("stalkerRun", false);
 
-        //if (distance < 3) animator.SetBool("stalkerAttack", true);
-        //else animator.SetBool("stalkerAttack", false);
-        if(distance < minDistance) Explosion();
+        if(distance < minDistance && !iAmSummon) Explosion(); 
+        else
+        {
+            if (distance < 3) animator.SetBool("stalkerAttack", true);
+            else animator.SetBool("stalkerAttack", false);
+        }
 
         healthBar.UpdateBar(currentHp, maxHp);
         if(currentHp <= 0)

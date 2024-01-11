@@ -119,7 +119,7 @@ GameObject:
   - component: {fileID: 6782428990963547341}
   - component: {fileID: 9073766503200489821}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: CanvasInvoker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -316,7 +316,7 @@ RectTransform:
   m_Father: {fileID: 9205133105160176639}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -407,6 +407,7 @@ GameObject:
   - component: {fileID: 378760508651985312}
   - component: {fileID: 6909566617623200408}
   - component: {fileID: 1609919852332821293}
+  - component: {fileID: 3342376022550616840}
   m_Layer: 0
   m_Name: Invoker
   m_TagString: Enemy
@@ -515,16 +516,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9404d55484e13ad4eb8f04e9367fedb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 3
-  currentHp: 3
+  maxHp: 50
+  currentHp: 50
   speed: 0
   damage: 1
   dropItem: {fileID: 0}
   summon: {fileID: 1244057088563596340, guid: f18d9c23531aedf4bb45924828c128a1, type: 3}
   timeBetweenSummon: 5
-  maxSummons: 2
+  maxSummons: 1
   summonsActive: 0
   isSummoning: 0
+  currentHPSummon: 2
+  maxHPSummon: 2
+  speedSummon: 7
+  minDistanceSummon: 1
+  explosionForceSummon: 1
 --- !u!70 &1609919852332821293
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -560,3 +566,30 @@ CapsuleCollider2D:
   m_Offset: {x: -0.028775534, y: 0.007193923}
   m_Size: {x: 0.29642805, y: 0.5122447}
   m_Direction: 0
+--- !u!50 &3342376022550616840
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9064378259649603942}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 7

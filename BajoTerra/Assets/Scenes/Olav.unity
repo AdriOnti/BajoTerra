@@ -2306,6 +2306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb73152b4409037478f61ae38b7758ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerHUD: []
 --- !u!1 &569008638
 GameObject:
   m_ObjectHideFlags: 0
@@ -5436,10 +5437,6 @@ MonoBehaviour:
   actualWeapon: 0
   melee: {fileID: 752878348}
   bullet: {fileID: 1278696436}
-  hpText: {fileID: 305168557}
-  attackText: {fileID: 1244518162}
-  speedText: {fileID: 345551492}
-  weaponText: {fileID: 1525678382}
   projectileQuantity: 1
   shotSpeed: 10
   timeBetweenShots: 0.25
@@ -5531,11 +5528,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 53952867488221963, guid: 5703e10ce15629847981b3291484c9ef, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 53952867488221963, guid: 5703e10ce15629847981b3291484c9ef, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5387460716603760056, guid: 5703e10ce15629847981b3291484c9ef, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5581,38 +5578,6 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 698555051}
-    - target: {fileID: 6909566617623200408, guid: 5703e10ce15629847981b3291484c9ef, type: 3}
-      propertyPath: maxHp
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 6909566617623200408, guid: 5703e10ce15629847981b3291484c9ef, type: 3}
-      propertyPath: currentHp
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 6909566617623200408, guid: 5703e10ce15629847981b3291484c9ef, type: 3}
-      propertyPath: maxSummons
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6909566617623200408, guid: 5703e10ce15629847981b3291484c9ef, type: 3}
-      propertyPath: maxHPSummon
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6909566617623200408, guid: 5703e10ce15629847981b3291484c9ef, type: 3}
-      propertyPath: speedSummon
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 6909566617623200408, guid: 5703e10ce15629847981b3291484c9ef, type: 3}
-      propertyPath: currentHPSummon
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6909566617623200408, guid: 5703e10ce15629847981b3291484c9ef, type: 3}
-      propertyPath: minDistanceSummon
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6909566617623200408, guid: 5703e10ce15629847981b3291484c9ef, type: 3}
-      propertyPath: explosionForceSummon
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 9064378259649603942, guid: 5703e10ce15629847981b3291484c9ef, type: 3}
       propertyPath: m_Name
       value: Invoker
@@ -5624,10 +5589,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 9064378259649603942, guid: 5703e10ce15629847981b3291484c9ef, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1649698413}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5703e10ce15629847981b3291484c9ef, type: 3}
 --- !u!1 &1525678380
 GameObject:
@@ -8820,38 +8782,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1649698407 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9064378259649603942, guid: 5703e10ce15629847981b3291484c9ef, type: 3}
-  m_PrefabInstance: {fileID: 1499955319}
-  m_PrefabAsset: {fileID: 0}
---- !u!50 &1649698413
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1649698407}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 7
 --- !u!1 &1673140218
 GameObject:
   m_ObjectHideFlags: 0

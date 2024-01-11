@@ -26,10 +26,10 @@ public class Player : Character
     public GameObject bullet;
 
     [Header("GUI")]
-    public Text hpText;
-    public Text attackText;
-    public Text speedText;
-    public Text weaponText;
+    private Text hpText;
+    private Text attackText;
+    private Text speedText;
+    private Text weaponText;
 
     [Header("Player Stadistics")]
     public int projectileQuantity;
@@ -64,6 +64,15 @@ public class Player : Character
         // Disable Melee & Instantiate bullet pool
         melee.SetActive(false);
         InstantiatePoolItem();
+    }
+
+    private void Start()
+    {
+        hpText = GameManager.Instance.PlayerStat("health");
+        attackText = GameManager.Instance.PlayerStat("attack");
+        speedText = GameManager.Instance.PlayerStat("speed");
+        weaponText = GameManager.Instance.PlayerStat("weapon");
+        ResetUI();
     }
 
     private void ReadMove(InputAction.CallbackContext ctx) { movement = ctx.ReadValue<Vector2>(); }
