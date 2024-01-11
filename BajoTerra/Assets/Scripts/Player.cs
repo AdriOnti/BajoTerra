@@ -90,6 +90,9 @@ public class Player : Character
 
         // Reset the HUD
         ResetUI();
+
+        // Get the pause input
+        PauseGame();
     }
 
     public void PlayerMove()
@@ -276,5 +279,10 @@ public class Player : Character
             shot.SetActive(false);
             pool.Add(shot.transform);
         }
+    }
+
+    void PauseGame()
+    {
+        if(Input.GetKey(KeyCode.Escape)) { GameManager.Instance.PauseGame(); }
     }
 }

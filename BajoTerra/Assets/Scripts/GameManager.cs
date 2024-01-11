@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     int trapType;
     public static GameManager Instance;
     private List<Text> playerHUD = new List<Text>();
+    private GameObject pause;
 
     private void Awake()
     {
@@ -19,13 +20,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         GetHUD();
+        GetPauseMenu();
         trapType = 0;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void GetHUD() 
@@ -54,6 +50,14 @@ public class GameManager : MonoBehaviour
                     break;
             }
         }
+    }
+
+    public void GetPauseMenu()
+    {
+        GameObject canvas = GameObject.Find("Canvas");
+        pause = canvas.transform.GetChild(1).gameObject;
+
+        pause.SetActive(false);
     }
 
     public Text PlayerStat(string stat)
@@ -85,51 +89,7 @@ public class GameManager : MonoBehaviour
         return null;
     }
 
-    //public Text PlayerHP()
-    //{
-    //    foreach (Text player in playerHUD)
-    //    {
-    //        if (player.gameObject.name == "HealthTXT")
-    //        {
-    //            return player;
-    //        }
-    //    }
-    //    return null;
-    //}
+    public void PauseGame() { pause.SetActive(true); }
 
-    //public Text PlayerAttack()
-    //{
-    //    foreach (Text player in playerHUD)
-    //    {
-    //        if (player.gameObject.name == "AttackTXT")
-    //        {
-    //            return player;
-    //        }
-    //    }
-    //    return null;
-    //}
-
-    //public Text PlayerSpeed()
-    //{
-    //    foreach (Text player in playerHUD)
-    //    {
-    //        if (player.gameObject.name == "SpeedTXT")
-    //        {
-    //            return player;
-    //        }
-    //    }
-    //    return null;
-    //}
-
-    //public Text PlayerWeapon()
-    //{
-    //    foreach (Text player in playerHUD)
-    //    {
-    //        if (player.gameObject.name == "WeaponTXT")
-    //        {
-    //            return player;
-    //        }
-    //    }
-    //    return null;
-    //}
+    public void PlayGame() { pause.SetActive(false); }
 }
