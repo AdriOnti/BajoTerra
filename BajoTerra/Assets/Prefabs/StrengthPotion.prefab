@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7122971502510769892}
   - component: {fileID: 2343738194860508184}
   - component: {fileID: -7354349018587320929}
+  - component: {fileID: 4689926357365807439}
   m_Layer: 0
   m_Name: StrengthPotion
   m_TagString: Untagged
@@ -28,8 +29,8 @@ Transform:
   m_GameObject: {fileID: 3018162556229026675}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.1152344, y: -5.450001, z: -5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -5.1202, y: -5.5116, z: -5}
+  m_LocalScale: {x: 2.279672, y: 2.469957, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -141,6 +142,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 93db28f9a1cd51a4aab8f5f8ab3a1f38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: 11b508a147355c5439b31bccc9b5ae82, type: 2}
+--- !u!114 &4689926357365807439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3018162556229026675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9053e4262fa8da4f81eec8917844fdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: 11b508a147355c5439b31bccc9b5ae82, type: 2}

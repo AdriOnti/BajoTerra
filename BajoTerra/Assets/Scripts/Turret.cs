@@ -48,19 +48,19 @@ public class Turret : Enemy
         {
             speed = 0;
             DetectDead("StalkerDeath");
-            StartCoroutine(StopAnimation());
+            //StartCoroutine(StopAnimation());
         }
     }
 
-    private IEnumerator StopAnimation()
-    {
-        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
-        animator.enabled = false;
-        yield return new WaitForSeconds(0.01f);
-        animator.enabled = true;
+    //private IEnumerator StopAnimation()
+    //{
+    //    yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+    //    animator.enabled = false;
+    //    yield return new WaitForSeconds(0.01f);
+    //    animator.enabled = true;
 
-        this.gameObject.SetActive(false);
-    }
+    //    this.gameObject.SetActive(false);
+    //}
 
     void InstantiatePoolItem()
     {
@@ -86,7 +86,7 @@ public class Turret : Enemy
     {
         if (animator.GetBool("isShooting"))
         {
-            yield break; // Evitar disparar múltiples balas simultáneamente
+            yield break;
         }
 
         animator.SetBool("isShooting", true);
@@ -106,13 +106,11 @@ public class Turret : Enemy
 
                 StartCoroutine(DesactivarBala(shotTransform.gameObject, bulletLifeTime));
 
-                // Esperar antes de disparar la siguiente bala
-                yield return new WaitForSeconds(timeBetweenShots); // Ajusta según tus necesidades
+                yield return new WaitForSeconds(timeBetweenShots);
             }
         }
 
-        // Esperar un tiempo después de disparar todas las balas y luego desactivar la animación
-        yield return new WaitForSeconds(bulletLifeTime); // Puedes ajustar esto según tus necesidades
+        yield return new WaitForSeconds(bulletLifeTime);
         animator.SetBool("isShooting", false);
     }
 

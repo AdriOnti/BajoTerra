@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     private List<Text> playerHUD = new List<Text>();
     private GameObject pause;
+    private GameObject death;
 
     private void Awake()
     {
@@ -21,10 +22,12 @@ public class GameManager : MonoBehaviour
     {
         GetHUD();
         GetPauseMenu();
+        GetDeadMenu();
         trapType = 0;
     }
 
-    public void GetHUD() 
+    // Obtain any element whose type is Text
+    public void GetHUD()
     {
         GameObject canvas = GameObject.Find("Canvas");
         GameObject hud = canvas.transform.GetChild(0).gameObject;
@@ -52,6 +55,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // Obtiene el menu de pausa y lo desactiva
     public void GetPauseMenu()
     {
         GameObject canvas = GameObject.Find("Canvas");
@@ -60,6 +64,16 @@ public class GameManager : MonoBehaviour
         pause.SetActive(false);
     }
 
+    // Obtiene el menu de muerte y lo desactiva
+    public void GetDeadMenu()
+    {
+        GameObject canvas = GameObject.Find("Canvas");
+        death = canvas.transform.GetChild(2).gameObject;
+
+        death.SetActive(false);
+    }
+
+    // Funcion que devuelve el TextObject que tiene el nombre que se busca
     public Text PlayerStat(string stat)
     {
         switch (stat)
@@ -82,14 +96,20 @@ public class GameManager : MonoBehaviour
                 break;
         }
 
-        foreach(Text player in playerHUD)
+        foreach (Text player in playerHUD)
         {
-            if(player.gameObject.name == stat) return player;
+            if (player.gameObject.name == stat) return player;
         }
         return null;
     }
 
+
+    // Pausar juego
     public void PauseGame() { pause.SetActive(true); }
 
+    // Reanudar juego
     public void PlayGame() { pause.SetActive(false); }
+
+    // Muerte del jugador
+    public void GameOver() { death.SetActive(true); }
 }

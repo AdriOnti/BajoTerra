@@ -173,6 +173,7 @@ public class Player : Character
         animator.SetBool("isDead", true);
         yield return new WaitForSeconds(2.0f);
         this.gameObject.SetActive(false);
+        GameManager.Instance.GameOver();
     }
 
     // PLAYER USE ITEM

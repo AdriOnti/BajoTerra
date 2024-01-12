@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : Character
 {
-    [Header("Drop Item")]
-    public GameObject dropItem;
+    //[Header("Drop Item")]
+    //public GameObject dropItem;
 
     protected GameObject player;
 
@@ -15,13 +13,10 @@ public class Enemy : Character
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
-    private void Update()
-    {
-        if(dropItem != null)
-        {
-            dropItem.transform.position = transform.position;
-        }
-    }
+    //private void Update()
+    //{
+    //    if(dropItem != null) dropItem.transform.position = transform.position;
+    //}
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -38,15 +33,15 @@ public class Enemy : Character
     public override void DetectDead(string animationName)
     {
         base.DetectDead(animationName);
-        DropItem();
+        //DropItem();
     }
 
-    private void DropItem()
-    {
-        if(dropItem != null) 
-        {
-            this.gameObject.SetActive(false);
-            dropItem.SetActive(true);
-        }
-    }
+    //private void DropItem()
+    //{
+    //    if(dropItem != null) 
+    //    {
+    //        this.gameObject.SetActive(false);
+    //        dropItem.SetActive(true);
+    //    }
+    //}
 }

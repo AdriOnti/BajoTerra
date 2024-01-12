@@ -5,19 +5,19 @@ public class InventoryItemController : MonoBehaviour
 {
     Item item;
     public Button RemoveButton;
+    //public static InventoryItemController instance;
 
+    // Funcion que borra un item del inventario
     public void RemoveItem()
     {
         InventoryManager.Instance.Remove(item);
-
         Destroy(gameObject);
     }
 
-    public void AddItem(Item newItem)
-    {
-        item = newItem;
-    }
+    // Añade un nuevo item al inventario
+    public void AddItem(Item newItem) { item = newItem; }
 
+    // Funcion para usar un item. Una vez que se usa, se elimina del inventario
     public void UseItem()
     {
         switch (item.itemType)
@@ -35,7 +35,6 @@ public class InventoryItemController : MonoBehaviour
                 Player.Instance.IncreaseSpeed(item.value);
                 break;
         }
-
         RemoveItem();
     }
 
