@@ -5,33 +5,27 @@ public class RoomManager : MonoBehaviour
 {
     protected Transform roomBoard;
     protected Transform roomParent;
+    protected List<Transform> boardSpaces = new List<Transform>();
     protected List<Transform> rooms = new List<Transform>();
     protected string path;
+    protected Transform player;
 
     // Start is called before the first frame update
     private void Start()
     {
-        switch (tag)
-        {
-            case "NDoor":
-                path = "N";
-                break;
-            case "SDoor":
-                path = "S";
-                break;
-            case "EDoor":
-                path = "E";
-                break;
-            case "ODoor":
-                path = "O";
-                break;
-        }
+
     }
 
     void Awake()
     {
         roomBoard = GameObject.FindGameObjectWithTag("RoomManager").transform;
         roomParent = GameObject.FindGameObjectWithTag("Rooms").transform;
+
+        foreach (Transform child in roomBoard)
+        {
+            boardSpaces.Add(child);
+        }
+
         foreach (Transform child in roomParent)
         {
             foreach (Transform child2 in child)
@@ -47,36 +41,48 @@ public class RoomManager : MonoBehaviour
         
     }
 
-    void SpawnRoom()
-    {
-        switch (path)
-        {
-            case "N":
-                break;
-            case "S":
-                break;
-            case "E":
-                break;
-            case "O":
-                break;
-        }
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        SetChildrenPositions();
+        if (collision.gameObject.tag == "Player")
+        {
+            player = collision.gameObject.transform;
+        }
+
+        switch (tag)
+        {
+            case "N":
+                path = "S";
+                player.position = new Vector3(player.position.x, player.position.y + 4.5f, player.position.z);
+                break;
+            case "S":
+                path = "N";
+                player.position = new Vector3(player.position.x, player.position.y - 4.5f, player.position.z);
+                break;
+            case "E":
+                path = "O";
+                player.position = new Vector3(player.position.x + 3f, player.position.y, player.position.z);
+                break;
+            case "O":
+                path = "E";
+                player.position = new Vector3(player.position.x - 3f, player.position.y, player.position.z);
+                break;
+        }
+
+        SetRoom();
     }
 
-    void SetChildrenPositions()
+    void SetRoom()
     {
-        int i = 0;
-        foreach (Transform child in roomBoard)
+        Debug.Log(path);
+
+        for (int i = 0; i < rooms.Count; i++)
         {
-            foreach (Transform child2 in child)
+            if (rooms[i].name.Contains(path))
             {
-                rooms[i].SetParent(child2);
-                rooms[i].position = child2.position;
-                i++;
+                Debug.Log("a");
+                rooms[i].SetParent(boardSpaces[3]);
+                rooms[i].position = boardSpaces[3].position;
+                break;
             }
         }
     }

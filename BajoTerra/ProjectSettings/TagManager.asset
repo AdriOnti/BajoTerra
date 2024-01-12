@@ -7,10 +7,10 @@ TagManager:
   - Enemy
   - RoomManager
   - Rooms
-  - NDoor
-  - SDoor
-  - EDoor
-  - ODoor
+  - N
+  - S
+  - E
+  - O
   layers:
   - Default
   - TransparentFX

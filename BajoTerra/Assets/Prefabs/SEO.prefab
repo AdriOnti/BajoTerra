@@ -1933,7 +1933,7 @@ GameObject:
   - component: {fileID: 6421599705110809664}
   m_Layer: 0
   m_Name: ODoor
-  m_TagString: Untagged
+  m_TagString: O
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2073,7 +2073,7 @@ GameObject:
   - component: {fileID: 4402616471126344258}
   - component: {fileID: 1623062785938209417}
   m_Layer: 0
-  m_Name: RoomSEO
+  m_Name: SEO
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2124,7 +2124,7 @@ GameObject:
   - component: {fileID: 2892861609130108029}
   m_Layer: 0
   m_Name: SDoor
-  m_TagString: Untagged
+  m_TagString: S
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2215,7 +2215,7 @@ GameObject:
   - component: {fileID: 8660649521735157244}
   m_Layer: 0
   m_Name: EDoor
-  m_TagString: Untagged
+  m_TagString: E
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
