@@ -2505,9 +2505,10 @@ GameObject:
   m_Component:
   - component: {fileID: 288064770}
   - component: {fileID: 288064771}
+  - component: {fileID: 288064772}
   m_Layer: 0
   m_Name: Path3
-  m_TagString: Untagged
+  m_TagString: NDoor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2572,6 +2573,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.31974316}
   m_EdgeRadius: 0
+--- !u!114 &288064772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 288064769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 804f9cd2ae3f8ed4999115fa152b520b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &299780122
 GameObject:
   m_ObjectHideFlags: 0
@@ -6918,7 +6931,7 @@ GameObject:
   - component: {fileID: 614803488}
   m_Layer: 0
   m_Name: Path1
-  m_TagString: Untagged
+  m_TagString: NDoor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18891,9 +18904,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2082174419}
   - component: {fileID: 2082174420}
+  - component: {fileID: 2082174421}
   m_Layer: 0
   m_Name: Path2
-  m_TagString: Untagged
+  m_TagString: NDoor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18958,6 +18972,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.31974316}
   m_EdgeRadius: 0
+--- !u!114 &2082174421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2082174418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 804f9cd2ae3f8ed4999115fa152b520b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2088064843
 PrefabInstance:
   m_ObjectHideFlags: 0

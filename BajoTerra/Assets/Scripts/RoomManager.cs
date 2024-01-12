@@ -6,7 +6,7 @@ public class RoomManager : MonoBehaviour
     protected Transform roomBoard;
     protected Transform roomParent;
     protected List<Transform> rooms = new List<Transform>();
-    private string path;
+    protected string path;
 
     // Start is called before the first frame update
     private void Start()
@@ -47,14 +47,11 @@ public class RoomManager : MonoBehaviour
         
     }
 
-    protected void SpawnRoom()
+    void SpawnRoom()
     {
-        System.Random rnd = new System.Random();
-        int rndRoom = rnd.Next(1,7);
         switch (path)
         {
             case "N":
-                //random de 
                 break;
             case "S":
                 break;

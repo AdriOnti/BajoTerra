@@ -23,13 +23,13 @@ public class Invoker : MonoBehaviour
     private void Update()
     {
 
-        if(!isSummoning)
+        if (!isSummoning)
         {
             StartCoroutine(StopAnimation());
             StartCoroutine(ActiveSummons());
         }
 
-        if(summonsActive == maxSummons)
+        if (summonsActive == maxSummons)
         {
             StartCoroutine(StopAnimation());
             animator.SetBool("isSummoning", false);
