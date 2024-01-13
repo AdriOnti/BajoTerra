@@ -40,10 +40,7 @@ public class InventoryManager : MonoBehaviour
     public void ListItems()
     {
         // Clean content before open
-        foreach (Transform item in ItemContent)
-        {
-            Destroy(item.gameObject);
-        }
+        
 
         foreach (var item in Items)
         {
@@ -89,7 +86,11 @@ public class InventoryManager : MonoBehaviour
 
     public void ClearInventoryItems()
     {
-        InventoryItems = new InventoryItemController[0];
+        // Este foreach estaba justo de bajo del comentario de CleanBeforeOpen, en un comentario del tutorial salia esto y ¡HA FUNCIONADO!
+        foreach (Transform item in ItemContent)
+        {
+            Destroy(item.gameObject);
+        }
         Inventory.gameObject.SetActive(false);
     }
 }
