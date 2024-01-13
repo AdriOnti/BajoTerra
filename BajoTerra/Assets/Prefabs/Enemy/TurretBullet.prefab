@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3905916904685034729}
   - component: {fileID: 9087903726317917830}
   - component: {fileID: 167617742859595077}
+  - component: {fileID: 9145498318526776526}
   m_Layer: 0
   m_Name: TurretBullet
   m_TagString: Enemy
@@ -170,3 +171,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &9145498318526776526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3708628737400538929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd9cfb3dd584bae418ba905582a1c794, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHp: 0
+  currentHp: 0
+  speed: 0
+  damage: 2

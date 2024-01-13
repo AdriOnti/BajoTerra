@@ -64,6 +64,8 @@ public class Player : Character
         // Disable Melee & Instantiate bullet pool
         melee.SetActive(false);
         InstantiatePoolItem();
+
+        currentHp = maxHp;
     }
 
     private void Start()
@@ -153,7 +155,7 @@ public class Player : Character
     /// </summary>
     /// <param name="enemy">Enemigo contra el que ha chocado</param>
     /// <returns>Es para poder usar el bendito WaitForSeconds ES UNA CORRUTINA</returns>
-    private IEnumerator HurtPlayer(GameObject enemy)
+    public IEnumerator HurtPlayer(GameObject enemy)
     {
         if (currentHp != 0)
         {

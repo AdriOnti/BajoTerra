@@ -8,15 +8,32 @@ public class InventoryManager : MonoBehaviour
     public static InventoryManager Instance;
 
     [Header("Inventory")]
-    public List<Item> Items = new List<Item>();
+    [SerializeField] public List<Item> Items = new List<Item>();
     public Transform ItemContent;
     public GameObject InventoryItem;
     public Toggle EnableRemove;
     public InventoryItemController[] InventoryItems;
+    public GameObject Inventory;
 
-    private void Awake() { Instance = this; }
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
-    public void Add(Item item) { Items.Add(item); }
+
+    public void Add(Item item) 
+    {
+        Item newItem = Instantiate(item);
+        Items.Add(newItem); 
+    }
 
     public void Remove(Item item) { Items.Remove(item); }
 
@@ -60,22 +77,19 @@ public class InventoryManager : MonoBehaviour
     // Pone los items que estan como hijos del contenido del canvas
     public void SetInventoryItems()
     {
-        // Limpia completamente el arreglo InventoryItems
-        Array.Clear(InventoryItems, 0, InventoryItems.Length);
-
-        // Obtiene los nuevos elementos hijos de ItemContent
+        Debug.Log(ItemContent.childCount);
         InventoryItems = ItemContent.GetComponentsInChildren<InventoryItemController>();
+        Debug.Log(ItemContent.childCount);
 
         for (int i = 0; i < Items.Count; i++)
         {
-            if (i < InventoryItems.Length && InventoryItems[i] != null)
-            {
-                InventoryItems[i].AddItem(Items[i]);
-            }
-            else
-            {
-                Debug.LogWarning($"InventoryItemController missing at index {i}");
-            }
+            if (Items[i] != null) InventoryItems[i].AddItem(Items[i]);
         }
+    }
+
+    public void ClearInventoryItems()
+    {
+        InventoryItems = new InventoryItemController[0];
+        Inventory.gameObject.SetActive(false);
     }
 }

@@ -85,6 +85,7 @@ GameObject:
   m_Component:
   - component: {fileID: 569971325292188630}
   - component: {fileID: 4485113395956959831}
+  - component: {fileID: 3042458847273240966}
   m_Layer: 0
   m_Name: explosion
   m_TagString: Untagged
@@ -159,6 +160,51 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &3042458847273240966
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1199298791311492314}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 5.75, y: 4.34}
+    newSize: {x: 5.75, y: 4.34}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 25, y: 25}
+  m_EdgeRadius: 0
 --- !u!1 &1244057088563596340
 GameObject:
   m_ObjectHideFlags: 0
@@ -172,6 +218,7 @@ GameObject:
   - component: {fileID: 1127130846623171617}
   - component: {fileID: 3483134642300177227}
   - component: {fileID: 2224103912477091919}
+  - component: {fileID: 7019254898875510396}
   m_Layer: 0
   m_Name: Ghoul Stalker
   m_TagString: Enemy
@@ -188,7 +235,7 @@ Transform:
   m_GameObject: {fileID: 1244057088563596340}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.889999, y: -2.7700005, z: -5}
+  m_LocalPosition: {x: 10.889999, y: -2.7700005, z: -7}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -283,12 +330,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHp: 5
   currentHp: 5
-  speed: 5
+  speed: 2
   damage: 3
-  dropItem: {fileID: 0}
   minDistance: 3
   iAmSummon: 0
-  explosionForce: 2
+  explosionForce: 10
   explosionEffect: {fileID: 2145732152525303716}
 --- !u!61 &2224103912477091919
 BoxCollider2D:
@@ -335,6 +381,33 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.16013297, y: 0.19702561}
   m_EdgeRadius: 0
+--- !u!50 &7019254898875510396
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1244057088563596340}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 7
 --- !u!1 &2145732152525303716
 GameObject:
   m_ObjectHideFlags: 0
@@ -400,7 +473,7 @@ RectTransform:
   m_Father: {fileID: 6830421323688193403}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
