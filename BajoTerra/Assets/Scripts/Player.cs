@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.TestTools;
 using UnityEngine.UI;
 
 public class Player : Character
@@ -24,6 +23,9 @@ public class Player : Character
     [Header("Weapons")]
     public GameObject melee;
     public GameObject bullet;
+    public ParticleSystem flameThrower;
+    public float CurrentFlameThrowerCooldown;
+    public float FlameThrowerCooldown;
 
     [Header("GUI")]
     private Text hpText;
@@ -63,6 +65,7 @@ public class Player : Character
 
         // Disable Melee & Instantiate bullet pool
         melee.SetActive(false);
+        flameThrower.gameObject.SetActive(false);
         InstantiatePoolItem();
 
         if(currentHp > maxHp) currentHp = maxHp;
@@ -95,6 +98,8 @@ public class Player : Character
 
         // Get the pause input
         PauseGame();
+
+        if (CurrentFlameThrowerCooldown > 0) CurrentFlameThrowerCooldown -= 0.5f;
     }
 
     public void PlayerMove()
@@ -131,6 +136,7 @@ public class Player : Character
             // Depedends of the actual weapon. One weapon need a code, and other need another code...
             if (actualWeapon == Weapon.Melee) { melee.SetActive(true); }
             if (actualWeapon == Weapon.Shotgun) { StartCoroutine(Shot()); }
+            if (actualWeapon == Weapon.FlameThrower && CurrentFlameThrowerCooldown == 0) StartCoroutine(LethalFire());
         }
         else
         { 
@@ -215,6 +221,8 @@ public class Player : Character
         attackText.text = Convert.ToString($"{damage}");
         speedText.text = Convert.ToString($"{speed}");
         weaponText.text = $"Weapon: {actualWeapon}";
+        if (actualWeapon == Weapon.FlameThrower && CurrentFlameThrowerCooldown == 0.0f) weaponText.color = Color.green;
+        else if(actualWeapon == Weapon.FlameThrower && CurrentFlameThrowerCooldown > 0.0f)  weaponText.color = Color.red;
     }
 
     // DECIDE THE ACTUAL WEAPON
@@ -284,8 +292,24 @@ public class Player : Character
         }
     }
 
+    /// <summary>
+    /// Pausar el juego. Ya sabemos que no usa el Input System, pero no encontrabamos otra forma, perdon
+    /// </summary>
     void PauseGame()
     {
         if(Input.GetKey(KeyCode.Escape)) { GameManager.Instance.PauseGame(); }
+    }
+
+    /// <summary>
+    /// Corrutina que activa el lanzallamas y su cooldown
+    /// </summary>
+    /// <returns></returns>
+    IEnumerator LethalFire()
+    {
+        flameThrower.gameObject.SetActive(true);
+        flameThrower.Play();
+        yield return new WaitForSeconds(5.0f);
+        flameThrower.gameObject.SetActive(false);
+        CurrentFlameThrowerCooldown = FlameThrowerCooldown;
     }
 }
