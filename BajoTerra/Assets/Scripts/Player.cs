@@ -64,8 +64,6 @@ public class Player : Character
         // Disable Melee & Instantiate bullet pool
         melee.SetActive(false);
         InstantiatePoolItem();
-
-        currentHp = maxHp;
     }
 
     private void Start()
