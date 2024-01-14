@@ -7005,7 +7005,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHp: 10
-  currentHp: 0
+  currentHp: 10
   speed: 5
   damage: 2
   actualWeapon: 1

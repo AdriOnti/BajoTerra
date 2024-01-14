@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     private List<Text> playerHUD = new List<Text>();
     private GameObject pause;
     private GameObject death;
+    private GameObject inventoryBtn;
 
     private void Awake()
     {
@@ -22,6 +23,7 @@ public class GameManager : MonoBehaviour
         GetHUD();
         GetPauseMenu();
         GetDeadMenu();
+        GetInventoryBtn();
         trapType = 0;
     }
 
@@ -70,6 +72,12 @@ public class GameManager : MonoBehaviour
         death.SetActive(false);
     }
 
+    public void GetInventoryBtn()
+    {
+        GameObject canvas = GameObject.Find("Canvas");
+        inventoryBtn = canvas.transform.GetChild(4).gameObject;
+    }
+
     // Funcion que devuelve el TextObject que tiene el nombre que se busca
     public Text PlayerStat(string stat)
     {
@@ -102,11 +110,11 @@ public class GameManager : MonoBehaviour
 
 
     // Pausar juego
-    public void PauseGame() { pause.SetActive(true); }
+    public void PauseGame() { pause.SetActive(true); inventoryBtn.SetActive(false); }
 
     // Reanudar juego
-    public void PlayGame() { pause.SetActive(false); }
+    public void PlayGame() { pause.SetActive(false); inventoryBtn.SetActive(true); }
 
     // Muerte del jugador
-    public void GameOver() { death.SetActive(true); }
+    public void GameOver() { death.SetActive(true); inventoryBtn.SetActive(false); }
 }
