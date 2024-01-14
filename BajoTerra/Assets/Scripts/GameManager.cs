@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -60,7 +59,6 @@ public class GameManager : MonoBehaviour
     {
         GameObject canvas = GameObject.Find("Canvas");
         pause = canvas.transform.GetChild(1).gameObject;
-
         pause.SetActive(false);
     }
 
@@ -69,7 +67,6 @@ public class GameManager : MonoBehaviour
     {
         GameObject canvas = GameObject.Find("Canvas");
         death = canvas.transform.GetChild(2).gameObject;
-
         death.SetActive(false);
     }
 

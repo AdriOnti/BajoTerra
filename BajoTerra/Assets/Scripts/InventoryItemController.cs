@@ -5,7 +5,6 @@ public class InventoryItemController : MonoBehaviour
 {
     Item item;
     public Button RemoveButton;
-    //public static InventoryItemController instance;
 
     // Funcion que borra un item del inventario
     public void RemoveItem()

@@ -70,6 +70,7 @@ public class Turret : Enemy
         {
             GameObject shot = Instantiate(projectile, transform.position, Quaternion.identity, transform);
             shot.SetActive(false);
+            shot.GetComponent<Enemy>().damage = damage;
             pool.Add(shot.transform);
         }
     }

@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -22,10 +21,7 @@ public class InventoryManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
-        else
-        {
-            Destroy(gameObject);
-        }
+        else Destroy(gameObject);
     }
 
 
@@ -39,9 +35,6 @@ public class InventoryManager : MonoBehaviour
 
     public void ListItems()
     {
-        // Clean content before open
-        
-
         foreach (var item in Items)
         {
             GameObject obj = Instantiate(InventoryItem, ItemContent);
@@ -74,9 +67,7 @@ public class InventoryManager : MonoBehaviour
     // Pone los items que estan como hijos del contenido del canvas
     public void SetInventoryItems()
     {
-        Debug.Log(ItemContent.childCount);
         InventoryItems = ItemContent.GetComponentsInChildren<InventoryItemController>();
-        Debug.Log(ItemContent.childCount);
 
         for (int i = 0; i < Items.Count; i++)
         {
@@ -86,11 +77,8 @@ public class InventoryManager : MonoBehaviour
 
     public void ClearInventoryItems()
     {
-        // Este foreach estaba justo de bajo del comentario de CleanBeforeOpen, en un comentario del tutorial salia esto y ¡HA FUNCIONADO!
-        foreach (Transform item in ItemContent)
-        {
-            Destroy(item.gameObject);
-        }
+        // Este foreach estaba justo al principio de ListItems pero eso provacaba errores, en un comentario del tutorial salia esto y ¡HA FUNCIONADO!
+        foreach (Transform item in ItemContent) Destroy(item.gameObject);
         Inventory.gameObject.SetActive(false);
     }
 }

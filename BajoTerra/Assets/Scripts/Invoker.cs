@@ -1,5 +1,4 @@
 using System.Collections;
-using UnityEditor.Timeline.Actions;
 using UnityEngine;
 
 public class Invoker : Enemy
@@ -83,17 +82,6 @@ public class Invoker : Enemy
                 animator.SetBool("isSummoning", true);
                 summons[i].transform.position = transform.position;
                 summons[i].SetActive(true);
-
-                Stalker summon = summons[i].GetComponent<Stalker>();
-                // Configure the summon
-                //summon.speed = speedSummon;
-                //summon.currentHp = currentHPSummon;
-                //summon.maxHp = maxHPSummon;
-                //summon.minDistance = minDistanceSummon;
-                //summon.explosionForce = explosionForceSummon;
-                //summon.iAmSummon = true;
-                //summonsActive++;
-
 
                 summons[i].GetComponent<Stalker>().speed = speedSummon;
                 summons[i].GetComponent<Stalker>().currentHp = currentHPSummon;
