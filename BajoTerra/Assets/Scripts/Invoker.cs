@@ -48,7 +48,7 @@ public class Invoker : Enemy
             StartCoroutine(ActiveSummons());
         }
 
-        if(summonsActive == maxSummons)
+        if (summonsActive == maxSummons)
         {
             StartCoroutine(StopAnimation());
             animator.SetBool("isSummoning", false);
