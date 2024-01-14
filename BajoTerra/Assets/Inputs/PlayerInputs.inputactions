@@ -17,7 +17,7 @@
                 {
                     "name": "Attack",
                     "type": "Value",
-                    "id": "f951d0c5-fc32-4850-962f-b4311230fd36",
+                    "id": "ddeb234b-2a56-4da4-bc9f-2eea22398ce5",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
@@ -82,7 +82,7 @@
                 },
                 {
                     "name": "Arrows",
-                    "id": "a438e73c-dcfa-4029-af65-abecc2b166df",
+                    "id": "4bf05b0f-89fd-4fe6-b927-65311b129750",
                     "path": "2DVector",
                     "interactions": "",
                     "processors": "",
@@ -93,7 +93,7 @@
                 },
                 {
                     "name": "up",
-                    "id": "97de5a8c-b521-482f-918b-1a2eb5864eac",
+                    "id": "4b52063d-10ee-4dd9-b473-27649f9797f3",
                     "path": "<Keyboard>/upArrow",
                     "interactions": "",
                     "processors": "",
@@ -104,7 +104,7 @@
                 },
                 {
                     "name": "down",
-                    "id": "bd937f59-4818-44b9-ae4e-e090b998d119",
+                    "id": "2d2fd0bc-c641-45c3-8c00-4835b71dfa07",
                     "path": "<Keyboard>/downArrow",
                     "interactions": "",
                     "processors": "",
@@ -115,7 +115,7 @@
                 },
                 {
                     "name": "left",
-                    "id": "2ab7ef69-14fe-4a55-a482-68bf2cd6fe21",
+                    "id": "5a11b26a-8670-444c-8fc4-5fc1f3e9a1f6",
                     "path": "<Keyboard>/leftArrow",
                     "interactions": "",
                     "processors": "",
@@ -126,7 +126,7 @@
                 },
                 {
                     "name": "right",
-                    "id": "55e29f90-4636-465c-90fe-f4c5dddd1c8d",
+                    "id": "da07e314-e6e2-45df-abdb-2337d7644900",
                     "path": "<Keyboard>/rightArrow",
                     "interactions": "",
                     "processors": "",

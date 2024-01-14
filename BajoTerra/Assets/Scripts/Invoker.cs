@@ -1,9 +1,9 @@
 using System.Collections;
-using UnityEditor.Timeline.Actions;
 using UnityEngine;
 
-public class Invoker : MonoBehaviour
+public class Invoker : Enemy
 {
+    [Header("Summoner Setting")]
     public GameObject summon;
     public float timeBetweenSummon = 2.5f;
     public int maxSummons = 8;
@@ -11,17 +11,36 @@ public class Invoker : MonoBehaviour
 
     private GameObject[] summons;
     public bool isSummoning;
-    private Animator animator;
+    private HealthBar healthBar;
+
+    [Header("Summon Setting")]
+    [SerializeField] private int currentHPSummon;
+    [SerializeField] private int maxHPSummon;
+    [SerializeField] private float speedSummon;
+    [SerializeField] private float minDistanceSummon;
+    [SerializeField] private float explosionForceSummon;
+
 
     void Start()
     {
-        animator = GetComponent<Animator>();
-        animator.Play("InvokerIdle");
+        base.animator = GetComponent<Animator>();
+        base.animator.Play("InvokerIdle");
         InstantiateSummons();
+
+        healthBar = GetComponentInChildren<HealthBar>();
+
+        if (healthBar != null) { healthBar.UpdateBar(currentHp, maxHp); }
+        else { Debug.LogError("HealthBar component not found in children."); }
     }
 
     private void Update()
     {
+        healthBar.UpdateBar(currentHp, maxHp);
+        if (currentHp <= 0)
+        {
+            speed = 0;
+            DetectDead("InvokerDeath");
+        }
 
         if (!isSummoning)
         {
@@ -34,6 +53,7 @@ public class Invoker : MonoBehaviour
             StartCoroutine(StopAnimation());
             animator.SetBool("isSummoning", false);
         }
+
     }
 
     void InstantiateSummons()
@@ -62,8 +82,12 @@ public class Invoker : MonoBehaviour
                 animator.SetBool("isSummoning", true);
                 summons[i].transform.position = transform.position;
                 summons[i].SetActive(true);
-                summons[i].GetComponent<Stalker>().speed = 7;
-                summons[i].GetComponent<Stalker>().hp = 2;
+
+                summons[i].GetComponent<Stalker>().speed = speedSummon;
+                summons[i].GetComponent<Stalker>().currentHp = currentHPSummon;
+                summons[i].GetComponent<Stalker>().maxHp = maxHPSummon;
+                summons[i].GetComponent<Stalker>().minDistance = minDistanceSummon;
+                summons[i].GetComponent<Stalker>().explosionForce = explosionForceSummon;
                 summons[i].GetComponent<Stalker>().iAmSummon = true;
                 summonsActive++;
             }

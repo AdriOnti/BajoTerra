@@ -2,30 +2,35 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Turret : MonoBehaviour
+public class Turret : Enemy
 {
-    public float visionRange = 5f;
-    public float rotateSpeed = 3f;
-    public float shotSpeed = 50f;
+    [Header("Settings")]
+    public float visionRange = 2f;
+    public float rotateSpeed = 30f;
+    public float shotSpeed = 25f;
 
-
-    private GameObject player;
-    private GameObject projectile;
-
-
+    [Header("TurretBullets Setting")]
     public int projectileQuantity;
     public float bulletLifeTime;
     public float timeBetweenShots;
 
+    // PRIVATE ATTRIBUTES
+    //private GameObject player;
+    private GameObject projectile;
     private List<Transform> pool;
-    private Animator animator;
+    private HealthBar healthBar;
 
     void Start()
     {
-        animator = GetComponent<Animator>();
-        player = GameObject.FindGameObjectWithTag("Player");
+        base.animator = GetComponent<Animator>();
+        base.player = GameObject.FindGameObjectWithTag("Player");
         projectile = GameObject.Find("TurretBullet");
-        
+
+        healthBar = GetComponentInChildren<HealthBar>();
+
+        if (healthBar != null) { healthBar.UpdateBar(currentHp, maxHp); }
+        else { Debug.LogError("HealthBar component not found in children."); }
+
         InstantiatePoolItem();
     }
 
@@ -36,11 +41,26 @@ public class Turret : MonoBehaviour
             RotatePlayer();
             StartCoroutine(Shot());
         }
-        else
+        else animator.SetBool("isShooting", false);
+
+        healthBar.UpdateBar(currentHp, maxHp); 
+        if (currentHp <= 0)
         {
-            animator.SetBool("isShooting", false);
+            speed = 0;
+            DetectDead("StalkerDeath");
+            //StartCoroutine(StopAnimation());
         }
     }
+
+    //private IEnumerator StopAnimation()
+    //{
+    //    yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+    //    animator.enabled = false;
+    //    yield return new WaitForSeconds(0.01f);
+    //    animator.enabled = true;
+
+    //    this.gameObject.SetActive(false);
+    //}
 
     void InstantiatePoolItem()
     {
@@ -50,6 +70,7 @@ public class Turret : MonoBehaviour
         {
             GameObject shot = Instantiate(projectile, transform.position, Quaternion.identity, transform);
             shot.SetActive(false);
+            shot.GetComponent<Enemy>().damage = damage;
             pool.Add(shot.transform);
         }
     }
@@ -64,12 +85,17 @@ public class Turret : MonoBehaviour
 
     IEnumerator Shot()
     {
+        if (animator.GetBool("isShooting"))
+        {
+            yield break;
+        }
+
         animator.SetBool("isShooting", true);
+
         foreach (Transform shotTransform in pool)
         {
-            if (!shotTransform.gameObject.activeSelf && animator.GetBool("isShooting"))
+            if (!shotTransform.gameObject.activeSelf)
             {
-                
                 shotTransform.position = transform.position;
                 shotTransform.rotation = transform.rotation;
                 shotTransform.gameObject.SetActive(true);
@@ -80,12 +106,15 @@ public class Turret : MonoBehaviour
                 rbShot.velocity = direction.normalized * shotSpeed;
 
                 StartCoroutine(DesactivarBala(shotTransform.gameObject, bulletLifeTime));
+
+                yield return new WaitForSeconds(timeBetweenShots);
             }
-            // Esperar antes de disparar la siguiente bala
-            yield return new WaitForSeconds(timeBetweenShots); // Ajusta según tus necesidades
-            animator.SetBool("isShooting", false);
         }
+
+        yield return new WaitForSeconds(bulletLifeTime);
+        animator.SetBool("isShooting", false);
     }
+
 
 
     IEnumerator DesactivarBala(GameObject shot, float waitTime)
