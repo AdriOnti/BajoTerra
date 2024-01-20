@@ -8,11 +8,13 @@ public class Paths : MonoBehaviour
     protected bool usedDoor;
     protected Transform player;
     protected string path;
+    protected string parent;
+    public bool startPath;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -23,6 +25,10 @@ public class Paths : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log(startPath);
+        if (!startPath) parent = transform.parent.gameObject.transform.parent.gameObject.name;
+        else parent = "6_3";
+
         if (collision.gameObject.tag == "Player")
         {
             player = collision.gameObject.transform;
@@ -47,7 +53,10 @@ public class Paths : MonoBehaviour
                     break;
             }
 
-            if (!usedDoor) RoomManager.Instance.SetRoom(path);
+            Debug.Log (path);
+            Debug.Log (parent);
+
+            if (!usedDoor) RoomManager.Instance.SetRoom(path, parent);
             usedDoor = true;
         }
     }
