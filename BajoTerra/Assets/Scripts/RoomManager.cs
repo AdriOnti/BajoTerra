@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class RoomManager : MonoBehaviour
@@ -109,6 +108,7 @@ public class RoomManager : MonoBehaviour
 
         setRooms[random].SetParent(desiredKey);
         setRooms[random].position = desiredKey.position;
+        rooms.Remove(setRooms[random]);
         EnemiesManager.Instance.SetEnemie(setRooms[random],1);
     }
 

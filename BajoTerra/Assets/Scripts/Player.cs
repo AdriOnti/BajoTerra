@@ -69,15 +69,18 @@ public class Player : Character
         InstantiatePoolItem();
 
         if(currentHp > maxHp) currentHp = maxHp;
+
+        
     }
 
-    private void Start()
+    public void GetValues()
     {
         hpText = GameManager.Instance.PlayerStat("health");
         attackText = GameManager.Instance.PlayerStat("attack");
         speedText = GameManager.Instance.PlayerStat("speed");
         weaponText = GameManager.Instance.PlayerStat("weapon");
-        ResetUI();
+
+        ResetUI();   
     }
 
     private void ReadMove(InputAction.CallbackContext ctx) { movement = ctx.ReadValue<Vector2>(); }

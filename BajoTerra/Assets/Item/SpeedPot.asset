@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 4
   itemName: Speed Potion
-  value: 3
+  value: 2
   icon: {fileID: -265158658, guid: f56cde7156b1908438cb4933d203ce23, type: 3}
   itemType: 3

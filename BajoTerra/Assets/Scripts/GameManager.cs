@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    int trapType;
+    //int trapType;
     public static GameManager Instance;
     private List<Text> playerHUD = new List<Text>();
     private GameObject pause;
@@ -28,7 +28,9 @@ public class GameManager : MonoBehaviour
         GetPauseMenu();
         GetDeadMenu();
         GetInventoryBtn();
-        trapType = 0;
+
+        Player.Instance.GetValues();
+        //trapType = 0;
     }
 
     // Obtain any element whose type is Text
