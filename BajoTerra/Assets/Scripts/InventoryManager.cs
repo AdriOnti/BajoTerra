@@ -79,6 +79,6 @@ public class InventoryManager : MonoBehaviour
     {
         // Este foreach estaba justo al principio de ListItems pero eso provacaba errores, en un comentario del tutorial salia esto y ¡HA FUNCIONADO!
         foreach (Transform item in ItemContent) Destroy(item.gameObject);
-        Inventory.gameObject.SetActive(false);
+        GameManager.Instance.CloseInventory();
     }
 }
