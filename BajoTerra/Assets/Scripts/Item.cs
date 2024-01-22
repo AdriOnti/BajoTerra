@@ -14,6 +14,7 @@ public class Item : ScriptableObject
         Heart,
         HealthPot,
         StrengthPot,
-        SpeedPot
+        SpeedPot,
+        Key
     }
 }

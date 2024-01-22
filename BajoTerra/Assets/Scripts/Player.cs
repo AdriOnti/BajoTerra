@@ -232,9 +232,11 @@ public class Player : Character
     public void DecideWeapon()
     {
         // Se trato de hacer con Input System, pero no se logro.
-        if (Input.GetKey(KeyCode.Alpha1)) { actualWeapon = Weapon.Melee; }
-        if (Input.GetKey(KeyCode.Alpha2)) { actualWeapon = Weapon.Shotgun; }
-        if (Input.GetKey(KeyCode.Alpha3)) { actualWeapon = Weapon.FlameThrower; }
+        if (Input.GetKey(KeyCode.Alpha1)) { actualWeapon = Weapon.Melee; }                      // Arma Melee
+        if (Input.GetKey(KeyCode.Alpha2)) { actualWeapon = Weapon.Shotgun; }                    // Arma Shotgun
+        if (Input.GetKey(KeyCode.Alpha3)) { actualWeapon = Weapon.FlameThrower; }               // Arma FlameThrower
+        if (Input.GetKey(KeyCode.Alpha4)) { maxHp = 999; currentHp = 999; damage = 20; }        // Modo Semi-Dios
+        if (Input.GetKey(KeyCode.Alpha5)) { currentHp = 0; }                                    // Vas a morir
     }
 
     /// <summary>
