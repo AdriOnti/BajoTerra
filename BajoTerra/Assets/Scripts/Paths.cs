@@ -53,10 +53,10 @@ public class Paths : MonoBehaviour
                     break;
             }
 
-            Debug.Log (path);
             Debug.Log (parent);
+            Debug.Log (path);
 
-            if (!usedDoor) RoomManager.Instance.SetRoom(path, parent);
+            if (!usedDoor) RoomManager.Instance.SetRoom(parent, path);
             usedDoor = true;
         }
     }
