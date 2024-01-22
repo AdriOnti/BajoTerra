@@ -37,11 +37,11 @@ public class Paths : MonoBehaviour
             {
                 case "N":
                     path = "S";
-                    player.position = new Vector3(player.position.x, player.position.y + 4.5f, player.position.z);
+                    player.position = new Vector3(player.position.x, player.position.y + 5f, player.position.z);
                     break;
                 case "S":
                     path = "N";
-                    player.position = new Vector3(player.position.x, player.position.y - 4.5f, player.position.z);
+                    player.position = new Vector3(player.position.x, player.position.y - 5f, player.position.z);
                     break;
                 case "E":
                     path = "O";

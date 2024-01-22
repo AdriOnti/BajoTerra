@@ -109,6 +109,7 @@ public class RoomManager : MonoBehaviour
 
         setRooms[random].SetParent(desiredKey);
         setRooms[random].position = desiredKey.position;
+        EnemiesManager.Instance.SetEnemie(setRooms[random],1);
     }
 
     public bool CheckRoom(string position, string direction)

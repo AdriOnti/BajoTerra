@@ -11,6 +11,9 @@ TagManager:
   - S
   - E
   - O
+  - Invokers
+  - Turrets
+  - Stalkers
   layers:
   - Default
   - TransparentFX
