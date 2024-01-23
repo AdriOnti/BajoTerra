@@ -1,4 +1,5 @@
 # BajoTerra
+Adrián Ontiveros & Olav Martos
 
 ## Items
 Existen 4 tipos de items distintos dentro del juego.
