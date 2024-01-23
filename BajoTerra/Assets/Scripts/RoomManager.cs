@@ -93,7 +93,9 @@ public class RoomManager : MonoBehaviour
                 westLimit = CheckRoom((boardPositions[0] + 1) + "_" + (boardPositions[1]), direction);
                 break;
         }*/
-        
+
+        SoundManager.Instance.PlayAudio(2);
+
         foreach (Transform room in rooms)
         {
             if (room.gameObject.name.Contains(direction))
