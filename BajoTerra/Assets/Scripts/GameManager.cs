@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     private GameObject death;
     private GameObject inventory;
     private GameObject inventoryBtn;
+    public GameObject dialog;
 
     private void Awake()
     {
@@ -20,6 +21,7 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
         else Destroy(gameObject);
+
     }
 
     // Start is called before the first frame update
@@ -31,6 +33,8 @@ public class GameManager : MonoBehaviour
         GetInventory();
         GetInventoryBtn();
 
+        //dialog = GameObject.FindGameObjectWithTag("Dialog");
+
         Player.Instance.GetValues();
         //trapType = 0;
     }
@@ -41,10 +45,10 @@ public class GameManager : MonoBehaviour
         GameObject canvas = GameObject.Find("Canvas");
         GameObject hud = canvas.transform.GetChild(0).gameObject;
 
-        GameObject[] ui = new GameObject[hud.transform.childCount];
+        GameObject[] ui = new GameObject[hud.transform.childCount -1];
         for (int i = 0; i < ui.Length; i++) ui[i] = hud.transform.GetChild(i).gameObject;
 
-        for (int i = 0; i < hud.transform.childCount; i++)
+        for (int i = 0; i < hud.transform.childCount -1; i++)
         {
             switch (ui[i].GetComponentInChildren<Text>().gameObject.name)
             {
@@ -146,5 +150,10 @@ public class GameManager : MonoBehaviour
     {
         inventoryBtn.SetActive(true);
         inventory.SetActive(false);
+    }
+    
+    public void ToggleDialog()
+    {
+        dialog.SetActive(!dialog.activeSelf);
     }
 }
