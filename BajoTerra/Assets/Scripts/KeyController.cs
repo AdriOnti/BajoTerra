@@ -1,41 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class KeyController : MonoBehaviour
 {
-
+    public GameObject KeyCont;
+    public Text KeyTXT;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //Debug.Log("1");
         if(collision.tag == "Player")
         {
-            //Debug.Log("2");
             List<Item> Items = InventoryManager.Instance.Items;
             foreach(Item item in Items)
             {
-                //Debug.Log("3");
                 if (item.itemType == Item.ItemType.Key)
                 {
-                    //Debug.Log("4");
+                    KeyCont.SetActive(true);
                     Debug.Log("YOU WIN");
+                    KeyTXT.text = "YOU WIN";
                 }
                 else
                 {
                     Debug.Log("NO KEY");
+                    KeyTXT.text = "NOT WORTHY";
                 }
             }
         }
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        
+        if(collision.tag == "Player")
+        {
+            //KeyTXT.text = "";
+            KeyCont.SetActive(false);
+        }
     }
 }
