@@ -1,4 +1,5 @@
 # BajoTerra
+Adrián Ontiveros & Olav Martos
 
 ## Descripcion del juego
 BajoTerra es un juego roguelike en 2D. El objetivo del protagonista es recorrer las diversas salas del nivel para poder encontrar la llave que le permita salir por la puerta.
