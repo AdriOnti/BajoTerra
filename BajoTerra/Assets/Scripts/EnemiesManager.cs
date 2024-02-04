@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Timeline.Actions;
 using UnityEngine;
 
 public class EnemiesManager : MonoBehaviour
@@ -32,7 +29,7 @@ public class EnemiesManager : MonoBehaviour
                 foreach (Transform invoker in invokersP)
                 {
                     invoker.gameObject.SetActive(true);
-                    invoker.position = new Vector3(room.position.x, room.position.y + 9f, room.position.z);
+                    invoker.position = new Vector3(room.position.x, room.position.y + 9f, invoker.position.z);
                     invoker.SetParent(room);
                     break;
                 }
@@ -42,7 +39,7 @@ public class EnemiesManager : MonoBehaviour
                 foreach (Transform stalker in stalkersP)
                 {
                     stalker.gameObject.SetActive(true);
-                    stalker.position = new Vector3(room.position.x, room.position.y + 9f, room.position.z);
+                    stalker.position = new Vector3(room.position.x, room.position.y + 9f, stalker.position.z);
                     stalker.SetParent(room);
                     break;
                 }
@@ -52,7 +49,7 @@ public class EnemiesManager : MonoBehaviour
                 foreach (Transform turret in turretsP)
                 {
                     turret.gameObject.SetActive(true);
-                    turret.position = new Vector3(room.position.x, room.position.y + 9f, room.position.z);
+                    turret.position = new Vector3(room.position.x, room.position.y + 9f, turret.position.z);
                     turret.SetParent(room);
                     break;
                 }

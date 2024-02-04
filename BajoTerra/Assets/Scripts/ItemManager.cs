@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Timeline.Actions;
 using UnityEngine;
 
 public class ItemManager : MonoBehaviour
@@ -23,7 +20,7 @@ public class ItemManager : MonoBehaviour
 
         Transform item = collectibles.GetChild(rnd);
         item.gameObject.SetActive(true);
-        item.position = new Vector2(room.position.x, room.position.y +8f);
+        item.position = new Vector3(room.position.x, room.position.y +8f, item.position.z);
         item.SetParent(room);
         itemsCount--;
     }

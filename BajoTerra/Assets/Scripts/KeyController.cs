@@ -1,12 +1,10 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class KeyController : MonoBehaviour
 {
-    public GameObject KeyCont;
-    public Text KeyTXT;
+    //public GameObject KeyCont;
+    //public Text KeyTXT;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.tag == "Player")
@@ -16,25 +14,23 @@ public class KeyController : MonoBehaviour
             {
                 if (item.itemType == Item.ItemType.Key)
                 {
-                    KeyCont.SetActive(true);
-                    Debug.Log("YOU WIN");
-                    KeyTXT.text = "YOU WIN";
+                    GameManager.Instance.ToggleDialog(1);
                 }
-                else
-                {
-                    Debug.Log("NO KEY");
-                    KeyTXT.text = "NOT WORTHY";
-                }
+                //else
+                //{
+                //    Debug.Log("NO KEY");
+                //    KeyTXT.text = "NOT WORTHY";
+                //}
             }
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if(collision.tag == "Player")
-        {
-            //KeyTXT.text = "";
-            KeyCont.SetActive(false);
-        }
-    }
+    //private void OnTriggerExit2D(Collider2D collision)
+    //{
+    //    if(collision.tag == "Player")
+    //    {
+    //        KeyTXT.text = "";
+    //        KeyCont.SetActive(false);
+    //    }
+    //}
 }

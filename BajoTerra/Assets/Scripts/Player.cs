@@ -159,7 +159,7 @@ public class Player : Character
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy")) { StartCoroutine(HurtPlayer(collision.gameObject)); }
-        if (collision.gameObject.CompareTag("NoWalkable")) { GameManager.Instance.ToggleDialog(); }
+        if (collision.gameObject.CompareTag("NoWalkable")) { GameManager.Instance.ToggleDialog(0); }
     }
 
     /// <summary>

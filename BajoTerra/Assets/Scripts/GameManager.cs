@@ -152,8 +152,9 @@ public class GameManager : MonoBehaviour
         inventory.SetActive(false);
     }
     
-    public void ToggleDialog()
+    public void ToggleDialog(int num)
     {
-        dialog.SetActive(!dialog.activeSelf);
+        Debug.Log("collision");
+        dialog.transform.GetChild(num).gameObject.SetActive(!dialog.transform.GetChild(num).gameObject.activeSelf);
     }
 }
