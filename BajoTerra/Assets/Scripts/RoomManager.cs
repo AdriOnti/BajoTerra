@@ -112,6 +112,7 @@ public class RoomManager : MonoBehaviour
         setRooms[random].position = desiredKey.position;
         rooms.Remove(setRooms[random]);
         EnemiesManager.Instance.SetEnemie(setRooms[random],1);
+        ItemManager.Instance.SetItem(setRooms[random]);
     }
 
     public bool CheckRoom(string position, string direction)
@@ -152,17 +153,17 @@ public class RoomManager : MonoBehaviour
         return isRoom;
     }
 
-    string ShowRoomboard()
-    {
-        string matrix = "";
-        for (int i = 0; i < roomBoard2.GetLength(0); i++)
-        {
-            for (int j = 0; j < roomBoard2.GetLength(1); j++)
-            {
-                matrix += roomBoard2[i, j] + ",";
-            }
-            matrix += "\n";
-        }
-        return matrix;
-    }
+    //string ShowRoomboard()
+    //{
+    //    string matrix = "";
+    //    for (int i = 0; i < roomBoard2.GetLength(0); i++)
+    //    {
+    //        for (int j = 0; j < roomBoard2.GetLength(1); j++)
+    //        {
+    //            matrix += roomBoard2[i, j] + ",";
+    //        }
+    //        matrix += "\n";
+    //    }
+    //    return matrix;
+    //}
 }

@@ -16,6 +16,7 @@ TagManager:
   - Stalkers
   - Dialog
   - NoWalkable
+  - Collectibles
   layers:
   - Default
   - TransparentFX
