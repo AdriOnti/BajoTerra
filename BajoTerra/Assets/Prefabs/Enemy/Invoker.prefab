@@ -316,7 +316,7 @@ RectTransform:
   m_Father: {fileID: 9205133105160176639}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -524,6 +524,7 @@ MonoBehaviour:
   timeBetweenSummon: 5
   maxSummons: 1
   summonsActive: 0
+  drop: {fileID: 5655398653355208349, guid: ef6ad79abd1f96a40ae533f5d46743fb, type: 3}
   isSummoning: 0
   currentHPSummon: 2
   maxHPSummon: 2

@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.IO;
 using UnityEngine;
 
 public class Paths : MonoBehaviour
@@ -9,7 +6,7 @@ public class Paths : MonoBehaviour
     protected Transform player;
     protected string path;
     protected string parent;
-    public bool startPath;
+    public int startPath;
 
     // Start is called before the first frame update
     void Awake()
@@ -26,8 +23,10 @@ public class Paths : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log(startPath);
-        if (!startPath) parent = transform.parent.gameObject.transform.parent.gameObject.name;
-        else parent = "6_3";
+        if (startPath == 1) parent = "6_3";
+        else if (startPath == 2) parent = "6_4";
+        else if (startPath == 3) parent = "6_5";
+        else parent = transform.parent.gameObject.transform.parent.gameObject.name;
 
         if (collision.gameObject.tag == "Player")
         {

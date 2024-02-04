@@ -8,6 +8,7 @@ public class Invoker : Enemy
     public float timeBetweenSummon = 2.5f;
     public int maxSummons = 8;
     public int summonsActive;
+    public GameObject drop;
 
     private GameObject[] summons;
     public bool isSummoning;
@@ -23,6 +24,7 @@ public class Invoker : Enemy
 
     void Start()
     {
+        drop.SetActive(false);
         base.animator = GetComponent<Animator>();
         base.animator.Play("InvokerIdle");
         InstantiateSummons();
@@ -38,6 +40,7 @@ public class Invoker : Enemy
         healthBar.UpdateBar(currentHp, maxHp);
         if (currentHp <= 0)
         {
+            DropItem();
             speed = 0;
             DetectDead("InvokerDeath");
         }
@@ -102,5 +105,13 @@ public class Invoker : Enemy
         animator.enabled = false;
         yield return new WaitForSeconds(0.01f);
         animator.enabled = true;
+    }
+
+    public void DropItem()
+    {
+        if (drop != null)
+        {
+            if(drop.GetComponent<ItemPickup>() != null) drop.GetComponent<ItemPickup>().Pickup();
+        }
     }
 }

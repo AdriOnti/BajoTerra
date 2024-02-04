@@ -9,7 +9,9 @@ public class GameManager : MonoBehaviour
     private List<Text> playerHUD = new List<Text>();
     private GameObject pause;
     private GameObject death;
+    private GameObject inventory;
     private GameObject inventoryBtn;
+    public GameObject dialog;
 
     private void Awake()
     {
@@ -19,6 +21,7 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
         else Destroy(gameObject);
+
     }
 
     // Start is called before the first frame update
@@ -27,7 +30,10 @@ public class GameManager : MonoBehaviour
         GetHUD();
         GetPauseMenu();
         GetDeadMenu();
+        GetInventory();
         GetInventoryBtn();
+
+        //dialog = GameObject.FindGameObjectWithTag("Dialog");
 
         Player.Instance.GetValues();
         //trapType = 0;
@@ -39,10 +45,10 @@ public class GameManager : MonoBehaviour
         GameObject canvas = GameObject.Find("Canvas");
         GameObject hud = canvas.transform.GetChild(0).gameObject;
 
-        GameObject[] ui = new GameObject[hud.transform.childCount];
+        GameObject[] ui = new GameObject[hud.transform.childCount -1];
         for (int i = 0; i < ui.Length; i++) ui[i] = hud.transform.GetChild(i).gameObject;
 
-        for (int i = 0; i < hud.transform.childCount; i++)
+        for (int i = 0; i < hud.transform.childCount -1; i++)
         {
             switch (ui[i].GetComponentInChildren<Text>().gameObject.name)
             {
@@ -76,6 +82,13 @@ public class GameManager : MonoBehaviour
         GameObject canvas = GameObject.Find("Canvas");
         death = canvas.transform.GetChild(2).gameObject;
         death.SetActive(false);
+    }
+
+    // Obtener el inventario
+    public void GetInventory()
+    {
+        GameObject canvas = GameObject.Find("Canvas");
+        inventory = canvas.transform.GetChild(3).gameObject;
     }
 
     public void GetInventoryBtn()
@@ -123,4 +136,25 @@ public class GameManager : MonoBehaviour
 
     // Muerte del jugador
     public void GameOver() { death.SetActive(true); inventoryBtn.SetActive(false); }
+
+    // Abrir el inventario
+    public void OpenInventory()
+    {
+        inventoryBtn.SetActive(false);
+        inventory.SetActive(true);
+        InventoryManager.Instance.ListItems();
+    }
+
+    // Cerrar el inventario
+    public void CloseInventory()
+    {
+        inventoryBtn.SetActive(true);
+        inventory.SetActive(false);
+    }
+    
+    public void ToggleDialog(int num)
+    {
+        Debug.Log("collision");
+        dialog.transform.GetChild(num).gameObject.SetActive(!dialog.transform.GetChild(num).gameObject.activeSelf);
+    }
 }

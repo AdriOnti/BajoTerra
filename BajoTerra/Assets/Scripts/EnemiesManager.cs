@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemiesManager : MonoBehaviour
@@ -22,34 +20,37 @@ public class EnemiesManager : MonoBehaviour
 
     public void SetEnemie(Transform room, int numEnemies)
     {
-        int rnd = UnityEngine.Random.Range(0, 3);
+        int rnd = UnityEngine.Random.Range(0, 6);
 
         for (int i = 0; i < numEnemies; i++)
         {
-            if (rnd == 0)
+            if (rnd == 5)
             {
                 foreach (Transform invoker in invokersP)
                 {
                     invoker.gameObject.SetActive(true);
-                    invoker.position = new Vector3(room.position.x, room.position.y + 9f, room.position.z);
+                    invoker.position = new Vector3(room.position.x, room.position.y + 9f, invoker.position.z);
+                    invoker.SetParent(room);
                     break;
                 }
             }
-            if (rnd == 1)
+            if (rnd == 1 || rnd == 2)
             {
                 foreach (Transform stalker in stalkersP)
                 {
                     stalker.gameObject.SetActive(true);
-                    stalker.position = new Vector3(room.position.x, room.position.y + 9f, room.position.z);
+                    stalker.position = new Vector3(room.position.x, room.position.y + 9f, stalker.position.z);
+                    stalker.SetParent(room);
                     break;
                 }
             }
-            if (rnd == 2)
+            if (rnd == 3 || rnd == 4)
             {
                 foreach (Transform turret in turretsP)
                 {
                     turret.gameObject.SetActive(true);
-                    turret.position = new Vector3(room.position.x, room.position.y + 9f, room.position.z);
+                    turret.position = new Vector3(room.position.x, room.position.y + 9f, turret.position.z);
+                    turret.SetParent(room);
                     break;
                 }
             }

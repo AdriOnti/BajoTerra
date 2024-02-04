@@ -127,9 +127,11 @@ public class Player : Character
 
     public void PlayerAttack()
     {
+
         // Say to the animator which animation must use
         if (attack.x != 0 || attack.y != 0)
         {
+            SoundManager.Instance.PlayAudio(2);
             animator.SetBool("isWalking", false);
             animator.SetFloat("posX", attack.x);
             animator.SetFloat("posY", attack.y);
@@ -151,16 +153,17 @@ public class Player : Character
     }
 
     /// <summary>
-    /// Hace falta decirlo, si choca contra un enemigo se activa la corrutina de daÒo al jugador
+    /// Hace falta decirlo, si choca contra un enemigo se activa la corrutina de da√±o al jugador
     /// </summary>
     /// <param name="collision">Contra lo que ha chocado</param>
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy")) { StartCoroutine(HurtPlayer(collision.gameObject)); }
+        if (collision.gameObject.CompareTag("NoWalkable")) { GameManager.Instance.ToggleDialog(0); }
     }
 
     /// <summary>
-    /// Corrutina para hacer daÒo al jugador
+    /// Corrutina para hacer da√±o al jugador
     /// </summary>
     /// <param name="enemy">Enemigo contra el que ha chocado</param>
     /// <returns>Es para poder usar el bendito WaitForSeconds ES UNA CORRUTINA</returns>
@@ -231,10 +234,18 @@ public class Player : Character
     // DECIDE THE ACTUAL WEAPON
     public void DecideWeapon()
     {
+        bool input = false;
+
         // Se trato de hacer con Input System, pero no se logro.
-        if (Input.GetKey(KeyCode.Alpha1)) { actualWeapon = Weapon.Melee; }
-        if (Input.GetKey(KeyCode.Alpha2)) { actualWeapon = Weapon.Shotgun; }
-        if (Input.GetKey(KeyCode.Alpha3)) { actualWeapon = Weapon.FlameThrower; }
+
+        if (Input.GetKey(KeyCode.Alpha1)) { actualWeapon = Weapon.Melee; input = true; }
+        if (Input.GetKey(KeyCode.Alpha2)) { actualWeapon = Weapon.Shotgun; input = true; }
+        if (Input.GetKey(KeyCode.Alpha3)) { actualWeapon = Weapon.FlameThrower; input = true; }
+
+        if (input)
+        {
+            SoundManager.Instance.PlayAudio(2);
+        }
     }
 
     /// <summary>
@@ -243,6 +254,7 @@ public class Player : Character
     /// <returns></returns>
     private IEnumerator Shot()
     {
+        SoundManager.Instance.PlayAudio(1);
         foreach (Transform shotTransform in pool)
         {
             if (!shotTransform.gameObject.activeSelf)
@@ -263,7 +275,7 @@ public class Player : Character
             }
         }
 
-        // Esperar un tiempo despuÈs de disparar todas las balas y luego desactivar la animaciÛn
+        // Esperar un tiempo despu√©s de disparar todas las balas y luego desactivar la animaci√≥n
         yield return new WaitForSeconds(bulletLifeTime);
     }
 
@@ -281,7 +293,7 @@ public class Player : Character
 
 
     /// <summary>
-    /// La tipica pool para disparos. Dudo que se necesite explicar algo m·s
+    /// La tipica pool para disparos. Dudo que se necesite explicar algo m√°s
     /// </summary>
     void InstantiatePoolItem()
     {
@@ -309,6 +321,7 @@ public class Player : Character
     /// <returns></returns>
     IEnumerator LethalFire()
     {
+        SoundManager.Instance.PlayAudio(0);
         flameThrower.gameObject.SetActive(true);
         flameThrower.Play();
         yield return new WaitForSeconds(5.0f);
