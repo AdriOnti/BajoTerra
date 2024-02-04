@@ -127,9 +127,11 @@ public class Player : Character
 
     public void PlayerAttack()
     {
+
         // Say to the animator which animation must use
         if (attack.x != 0 || attack.y != 0)
         {
+            SoundManager.Instance.PlayAudio(2);
             animator.SetBool("isWalking", false);
             animator.SetFloat("posX", attack.x);
             animator.SetFloat("posY", attack.y);
@@ -157,6 +159,7 @@ public class Player : Character
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy")) { StartCoroutine(HurtPlayer(collision.gameObject)); }
+        if (collision.gameObject.CompareTag("NoWalkable")) { GameManager.Instance.ToggleDialog(); }
     }
 
     /// <summary>
@@ -231,10 +234,17 @@ public class Player : Character
     // DECIDE THE ACTUAL WEAPON
     public void DecideWeapon()
     {
+        bool input = false;
+
         // Se trato de hacer con Input System, pero no se logro.
-        if (Input.GetKey(KeyCode.Alpha1)) { actualWeapon = Weapon.Melee; }
-        if (Input.GetKey(KeyCode.Alpha2)) { actualWeapon = Weapon.Shotgun; }
-        if (Input.GetKey(KeyCode.Alpha3)) { actualWeapon = Weapon.FlameThrower; }
+        if (Input.GetKey(KeyCode.Alpha1)) { actualWeapon = Weapon.Melee; input = true; }
+        if (Input.GetKey(KeyCode.Alpha2)) { actualWeapon = Weapon.Shotgun; input = true; }
+        if (Input.GetKey(KeyCode.Alpha3)) { actualWeapon = Weapon.FlameThrower; input = true; }
+
+        if (input)
+        {
+            SoundManager.Instance.PlayAudio(2);
+        }
     }
 
     /// <summary>
@@ -243,6 +253,7 @@ public class Player : Character
     /// <returns></returns>
     private IEnumerator Shot()
     {
+        SoundManager.Instance.PlayAudio(1);
         foreach (Transform shotTransform in pool)
         {
             if (!shotTransform.gameObject.activeSelf)
@@ -309,6 +320,7 @@ public class Player : Character
     /// <returns></returns>
     IEnumerator LethalFire()
     {
+        SoundManager.Instance.PlayAudio(0);
         flameThrower.gameObject.SetActive(true);
         flameThrower.Play();
         yield return new WaitForSeconds(5.0f);
