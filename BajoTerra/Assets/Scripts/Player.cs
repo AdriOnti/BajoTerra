@@ -153,7 +153,7 @@ public class Player : Character
     }
 
     /// <summary>
-    /// Hace falta decirlo, si choca contra un enemigo se activa la corrutina de daÒo al jugador
+    /// Hace falta decirlo, si choca contra un enemigo se activa la corrutina de da√±o al jugador
     /// </summary>
     /// <param name="collision">Contra lo que ha chocado</param>
     private void OnCollisionEnter2D(Collision2D collision)
@@ -163,7 +163,7 @@ public class Player : Character
     }
 
     /// <summary>
-    /// Corrutina para hacer daÒo al jugador
+    /// Corrutina para hacer da√±o al jugador
     /// </summary>
     /// <param name="enemy">Enemigo contra el que ha chocado</param>
     /// <returns>Es para poder usar el bendito WaitForSeconds ES UNA CORRUTINA</returns>
@@ -237,6 +237,7 @@ public class Player : Character
         bool input = false;
 
         // Se trato de hacer con Input System, pero no se logro.
+
         if (Input.GetKey(KeyCode.Alpha1)) { actualWeapon = Weapon.Melee; input = true; }
         if (Input.GetKey(KeyCode.Alpha2)) { actualWeapon = Weapon.Shotgun; input = true; }
         if (Input.GetKey(KeyCode.Alpha3)) { actualWeapon = Weapon.FlameThrower; input = true; }
@@ -274,7 +275,7 @@ public class Player : Character
             }
         }
 
-        // Esperar un tiempo despuÈs de disparar todas las balas y luego desactivar la animaciÛn
+        // Esperar un tiempo despu√©s de disparar todas las balas y luego desactivar la animaci√≥n
         yield return new WaitForSeconds(bulletLifeTime);
     }
 
@@ -292,7 +293,7 @@ public class Player : Character
 
 
     /// <summary>
-    /// La tipica pool para disparos. Dudo que se necesite explicar algo m·s
+    /// La tipica pool para disparos. Dudo que se necesite explicar algo m√°s
     /// </summary>
     void InstantiatePoolItem()
     {

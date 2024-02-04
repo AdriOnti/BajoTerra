@@ -4,10 +4,10 @@ public class ItemPickup : MonoBehaviour
 {
     public Item item;
 
-    void Pickup()
+    public void Pickup()
     {
         InventoryManager.Instance.Add(item);
-        Destroy(gameObject);
+        if(item.itemType != Item.ItemType.Key) Destroy(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

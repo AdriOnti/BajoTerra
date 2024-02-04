@@ -15,7 +15,14 @@ public class Enemy : Character
         if (collision.gameObject.tag == "Player")
         {
             currentHp -= Player.Instance.damage;
-            if (currentHp <= 0) DetectDead("Dead");
+            if (currentHp <= 0)
+            {
+                DetectDead("Dead");
+                if(this.GetComponent<Invoker>() != null)
+                {
+                    GetComponent<Invoker>().DropItem();
+                }
+            }
         }
     }
 

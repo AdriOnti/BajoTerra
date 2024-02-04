@@ -19,6 +19,7 @@ public class InventoryItemController : MonoBehaviour
     // Funcion para usar un item. Una vez que se usa, se elimina del inventario
     public void UseItem()
     {
+        if(item.itemType == Item.ItemType.Key) { return; }
         switch (item.itemType)
         {
             case Item.ItemType.Heart:

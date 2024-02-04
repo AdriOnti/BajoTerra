@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     private List<Text> playerHUD = new List<Text>();
     private GameObject pause;
     private GameObject death;
+    private GameObject inventory;
     private GameObject inventoryBtn;
     public GameObject dialog;
 
@@ -29,6 +30,7 @@ public class GameManager : MonoBehaviour
         GetHUD();
         GetPauseMenu();
         GetDeadMenu();
+        GetInventory();
         GetInventoryBtn();
 
         //dialog = GameObject.FindGameObjectWithTag("Dialog");
@@ -82,6 +84,13 @@ public class GameManager : MonoBehaviour
         death.SetActive(false);
     }
 
+    // Obtener el inventario
+    public void GetInventory()
+    {
+        GameObject canvas = GameObject.Find("Canvas");
+        inventory = canvas.transform.GetChild(3).gameObject;
+    }
+
     public void GetInventoryBtn()
     {
         GameObject canvas = GameObject.Find("Canvas");
@@ -128,6 +137,21 @@ public class GameManager : MonoBehaviour
     // Muerte del jugador
     public void GameOver() { death.SetActive(true); inventoryBtn.SetActive(false); }
 
+    // Abrir el inventario
+    public void OpenInventory()
+    {
+        inventoryBtn.SetActive(false);
+        inventory.SetActive(true);
+        InventoryManager.Instance.ListItems();
+    }
+
+    // Cerrar el inventario
+    public void CloseInventory()
+    {
+        inventoryBtn.SetActive(true);
+        inventory.SetActive(false);
+    }
+    
     public void ToggleDialog()
     {
         dialog.SetActive(!dialog.activeSelf);
